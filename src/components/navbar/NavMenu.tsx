@@ -9,8 +9,7 @@ import {
   Send,
   SignRight,
 } from "../icons";
-import { Link } from "@remix-run/react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const allLinks = (username: string | undefined) => {
   const linkOptions = [

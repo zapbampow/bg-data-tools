@@ -1,3 +1,5 @@
+import { Form } from "react-router-dom";
+
 export default function UsernameForm() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -6,7 +8,7 @@ export default function UsernameForm() {
   };
 
   return (
-    <form
+    <Form
       onSubmit={handleSubmit}
       method="post"
       className="flex flex-col gap-4 md:flex-row"
@@ -23,6 +25,6 @@ export default function UsernameForm() {
       >
         <span className="text-gradient">Submit</span>
       </button>
-    </form>
+    </Form>
   );
 }

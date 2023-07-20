@@ -1,16 +1,9 @@
 import NavMenu from "./NavMenu";
 import { HomeMeeple } from "../icons";
-import type { LoaderFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-
-export const loader: LoaderFunction = ({ params }) => {
-  let username = params.username;
-
-  return username;
-};
+import { useParams } from "react-router-dom";
 
 export default function Navbar() {
-  const username = useLoaderData();
+  const { username } = useParams();
 
   return (
     <nav className="flex items-center justify-between px-2 py-4 lg:px-8">

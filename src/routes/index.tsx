@@ -1,10 +1,8 @@
-import React from "react";
-import type { ActionArgs } from "@remix-run/node";
-import { redirect } from "@remix-run/node";
-import { Form } from "@remix-run/react";
-import UsernameForm from "~/components/bggStats/forms/UsernameForm";
+import type { ActionFunctionArgs } from "react-router-dom";
+import { redirect } from "react-router-dom";
+import UsernameForm from "~/components/forms/UsernameForm";
 
-export async function action({ request }: ActionArgs) {
+export async function action({ request }: ActionFunctionArgs) {
   const body = await request.formData();
   const username = body.get("username");
   return redirect(`${username}`);

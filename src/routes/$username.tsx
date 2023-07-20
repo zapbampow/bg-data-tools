@@ -1,6 +1,5 @@
-import type { LoaderFunction, LinksFunction } from "@remix-run/node";
-import { redirect } from "@remix-run/node";
-import { Outlet } from "@remix-run/react";
+import type { LoaderFunction } from "react-router-dom";
+import { Outlet, redirect } from "react-router-dom";
 import styles from "~/styles/bggStats/username.css";
 import url from "url";
 
