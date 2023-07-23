@@ -1,7 +1,6 @@
 import React from "react";
-import { Card } from "~/components/bggStats/aggregators/Card";
-import { Link } from "@remix-run/react";
-import { useParams } from "@remix-run/react";
+import { Card } from "~/components/aggregators/Card";
+import { Link, useParams } from "react-router-dom";
 
 export default function Tools() {
   const params = useParams();

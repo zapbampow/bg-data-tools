@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardTitle } from "../Card";
-import { usePlayResultsContext } from "~/contexts/bggStats/playResultsContext";
-import { usePlayFilterContext } from "~/contexts/bggStats/playFilterContext";
+import { usePlayResultsContext } from "~/contexts/playResultsContext";
+import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import type { DateGroup } from "../types";
 import convertToCountData from "./utils/convertToCountData";
 import YearChart from "../AggregatorMenu/CountCharts/YearChart";

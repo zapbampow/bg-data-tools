@@ -1,9 +1,9 @@
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { Combobox } from "@headlessui/react";
 import type { SelectionType } from "../types";
-import { usePlayFilterContext } from "~/contexts/bggStats/playFilterContext";
+import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import { useBggUser } from "~/hooks/bgg/useBggUser";
-import { Selector, Check, Search, Trash } from "~/components/bggStats/icons";
+import { Selector, Check, Search, Trash } from "~/components/icons";
 import {
   hoverStyles,
   itemHoverStyles,
@@ -12,14 +12,14 @@ import {
   comboContainerStyles,
   containerBase,
   openMultiComboboxMenuStyles,
-} from "~/components/bggStats/styles";
+} from "~/components/styles";
 import getOptions from "./getOptions";
 import type { FilterType } from "~/services/queryService/types";
 import ClearFilter from "./ClearFilter";
 import RemoveFilter from "./RemoveFilter";
-import Measurer from "~/components/bggStats/Measurer";
+import Measurer from "~/components/Measurer";
 import useDebounce from "~/hooks/useDebounce";
-import { usePlayResultsContext } from "~/contexts/bggStats/playResultsContext";
+import { usePlayResultsContext } from "~/contexts/playResultsContext";
 import { useIsMobile } from "~/hooks/useIsMobile";
 import { useWindowSize } from "~/hooks/useWindowSize";
 

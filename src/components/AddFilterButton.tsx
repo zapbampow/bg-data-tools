@@ -1,7 +1,7 @@
 import { useState, Fragment, useEffect } from "react";
 import { Listbox } from "@headlessui/react";
-import { usePlayFilterContext } from "~/contexts/bggStats/playFilterContext";
-import filterTree from "../../utils/filterTree";
+import { usePlayFilterContext } from "~/contexts/playFilterContext";
+import filterTree from "../utils/filterTree";
 import {
   baseStyles,
   openButtonStyles,

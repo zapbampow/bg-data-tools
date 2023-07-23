@@ -1,5 +1,5 @@
 import React from "react";
-import { usePlayFilterContext } from "~/contexts/bggStats/playFilterContext";
+import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import { ChevronLeft } from "../../icons";
 import { useCalendarScreenContext } from "../CalendarScreenContext";
 

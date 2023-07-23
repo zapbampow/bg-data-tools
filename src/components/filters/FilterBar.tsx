@@ -5,8 +5,8 @@ import type { FilterType } from "~/services/queryService/types";
 import type { SelectionType } from "../types";
 import type { PlayDataModel } from "~/models/bgg/gameDataModels";
 
-import { usePlayFilterContext } from "~/contexts/bggStats/playFilterContext";
-import { usePlayResultsContext } from "~/contexts/bggStats/playResultsContext";
+import { usePlayFilterContext } from "~/contexts/playFilterContext";
+import { usePlayResultsContext } from "~/contexts/playResultsContext";
 import { useBggUser } from "~/hooks/bgg/useBggUser";
 import filter from "~/services/queryService";
 

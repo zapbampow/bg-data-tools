@@ -6,7 +6,7 @@ import {
 } from "../styles";
 
 import type { FilterType } from "~/services/queryService/types";
-import { RemoveFilter } from "~/components/bggStats/filters";
+import { RemoveFilter } from "~/components/filters";
 
 interface Props {
   filter: FilterType;

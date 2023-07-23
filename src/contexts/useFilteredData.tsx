@@ -2,8 +2,8 @@ import { useCallback, useEffect } from "react";
 
 import type { FilterType } from "~/services/queryService/types";
 
-import { usePlayFilterContext } from "~/contexts/bggStats/playFilterContext";
-import { usePlayResultsContext } from "~/contexts/bggStats/playResultsContext";
+import { usePlayFilterContext } from "~/contexts/playFilterContext";
+import { usePlayResultsContext } from "~/contexts/playResultsContext";
 import { useBggUser } from "~/hooks/bgg/useBggUser";
 import filter from "~/services/queryService";
 

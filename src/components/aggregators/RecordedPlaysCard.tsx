@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { usePlayResultsContext } from "~/contexts/bggStats/playResultsContext";
+import { usePlayResultsContext } from "~/contexts/playResultsContext";
 import type { PlayDataModel } from "~/models/bgg/gameDataModels";
 import {
   getRecentPlays,

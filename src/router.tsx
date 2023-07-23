@@ -5,8 +5,10 @@ import {
 } from "react-router-dom";
 
 import Root from "~/routes/root.tsx";
-import BGGStatsHome, { action as homeAction } from "~/routes/index.tsx";
-
+import BGGStatsHome from "~/routes/index.tsx";
+import { action as homeAction } from "~/components/forms/UsernameForm.tsx";
+import Username, { loader as usernameLoader } from "~/routes/$username.tsx";
+import PlayDashboard from "~/routes/$username.plays.tsx";
 /**
  * TODO
  * Add routes using same paths as original
@@ -16,12 +18,14 @@ import BGGStatsHome, { action as homeAction } from "~/routes/index.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Root />} action={homeAction}>
+    <Route path="/" element={<Root />}>
       <Route path="/" element={<BGGStatsHome />} action={homeAction}></Route>
+      <Route path="/:username/plays" element={<PlayDashboard />} />
       <Route
         path="/:username"
-        element={<BGGStatsHome />}
-        action={homeAction}
+        element={<Username />}
+        loader={usernameLoader}
+        // action={homeAction}
       ></Route>
     </Route>
   )

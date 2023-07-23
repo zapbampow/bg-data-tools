@@ -12,7 +12,7 @@ import { Bar, getElementAtEvent } from "react-chartjs-2";
 import type { DateGroup } from "../../types";
 import getMonthsChartDataByYear from "../../DatesCard/utils/getMonthsChartDataByYear";
 import type { Screen } from "../../types";
-import { usePlayFilterContext } from "~/contexts/bggStats/playFilterContext";
+import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import monthNum from "../../DatesCard/utils/monthNum";
 import dayjs from "dayjs";
 import { useCalendarScreenContext } from "../../CalendarScreenContext";

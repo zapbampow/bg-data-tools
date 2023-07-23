@@ -7,17 +7,14 @@ import {
   hoverStyles,
   itemHoverStyles,
   baseSelectItem,
-} from "~/components/bggStats/styles";
-import type {
-  SelectionType,
-  FilterButtonData,
-} from "~/components/bggStats/types";
-import { usePlayFilterContext } from "~/contexts/bggStats/playFilterContext";
+} from "~/components/styles";
+import type { SelectionType, FilterButtonData } from "~/components/types";
+import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import {
   getAllPlayerNames,
   getAllUserNames,
   getAllLocations,
-  getAllGameNames,
+  // getAllGameNames,
   getAllGames,
 } from "~/utils/analysis/accumulations";
 import { useBggUser } from "~/hooks/bgg/useBggUser";

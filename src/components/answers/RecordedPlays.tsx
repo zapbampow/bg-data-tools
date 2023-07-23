@@ -1,5 +1,5 @@
 import React from "react";
-import { usePlayResultsContext } from "~/contexts/bggStats/playResultsContext";
+import { usePlayResultsContext } from "~/contexts/playResultsContext";
 import { Container } from "../pages/layout";
 import {
   createColumnHelper,

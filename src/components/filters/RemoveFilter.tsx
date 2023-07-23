@@ -1,6 +1,6 @@
-import { usePlayFilterContext } from "~/contexts/bggStats/playFilterContext";
+import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import type { FilterType } from "~/services/queryService/types";
-import { Trash } from "~/components/bggStats/icons";
+import { Trash } from "~/components/icons";
 
 type Props = {
   filter: FilterType;

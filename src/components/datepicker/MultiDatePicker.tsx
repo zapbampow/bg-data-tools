@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import DatePicker from "react-date-picker";
 import DateRangePicker from "@wojtekmaj/react-daterange-picker";
-import { usePlayFilterContext } from "~/contexts/bggStats/playFilterContext";
+import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import { ChevronLeft, ChevronRight, Trash } from "../icons";
-import { baseStyles } from "~/components/bggStats/styles";
+import { baseStyles } from "~/components/styles";
 import type { FilterType } from "~/services/queryService/types";
 
 const dateFormat = "YYYY-MM-DD";

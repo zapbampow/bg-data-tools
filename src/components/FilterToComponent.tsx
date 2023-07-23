@@ -1,10 +1,5 @@
-import React from "react";
-// import type { FilterType } from "~/components/bggStats/types";
 import type { FilterType } from "~/services/queryService/types";
-import {
-  ComboBoxFilter,
-  SingleSelectFilter,
-} from "~/components/bggStats/filters";
+import { ComboBoxFilter, SingleSelectFilter } from "~/components/filters";
 import ComboBoxFilterMultiple from "./filters/ComboBoxFilterMultiple";
 import Datepicker, { MultiDatePicker, ForAllTime } from "./datepicker";
 

@@ -1,12 +1,5 @@
-import type { LinksFunction } from "@remix-run/node";
-import React from "react";
-import { Container } from "~/components/bggStats/pages/layout";
 // import Markdown from "~/content/bggStats/how-to-use.mdx";
-import styles from "~/styles/bggStats/markdownStyles.css";
-
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: styles }];
-};
+import "~/styles/bggStats/markdownStyles.css";
 
 export default function about() {
   return (

@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Card, CardTitle } from "../Card";
-import { usePlayResultsContext } from "~/contexts/bggStats/playResultsContext";
+import { usePlayResultsContext } from "~/contexts/playResultsContext";
 import BackButton from "./BackButton";
 import type { DateGroup } from "../types";
 import convertToDateData from "./utils/convertToDateData";
 
 import YearChart from "../AggregatorMenu/CountCharts/YearChart";
 import MonthsChart from "../AggregatorMenu/CountCharts/MonthsChart";
-import { usePlayFilterContext } from "~/contexts/bggStats/playFilterContext";
+import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import MonthCalendar from "./MonthCalendar";
 import { useCalendarScreenContext } from "../CalendarScreenContext";
 import dayjs from "dayjs";

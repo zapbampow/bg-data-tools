@@ -14,18 +14,18 @@ import {
   comboContainerStyles,
   baseSelectItem,
   containerBase,
-} from "~/components/bggStats/styles";
-import type { SelectionType } from "~/components/bggStats/types";
-import { usePlayFilterContext } from "~/contexts/bggStats/playFilterContext";
+} from "~/components/styles";
+import type { SelectionType } from "~/components/types";
+import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import { useBggUser } from "~/hooks/bgg/useBggUser";
 import getOptions from "./getOptions";
-import Measurer from "~/components/bggStats/Measurer";
+import Measurer from "~/components/Measurer";
 import type { FilterType } from "~/services/queryService/types";
 import RemoveFilter from "./RemoveFilter";
 import ClearFilter from "./ClearFilter";
 import { Check, Search, Trash } from "../icons";
 import useDebounce from "~/hooks/useDebounce";
-import { usePlayResultsContext } from "~/contexts/bggStats/playResultsContext";
+import { usePlayResultsContext } from "~/contexts/playResultsContext";
 import { useIsMobile } from "~/hooks/useIsMobile";
 import { useWindowSize } from "~/hooks/useWindowSize";
 

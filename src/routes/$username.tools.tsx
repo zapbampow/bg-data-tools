@@ -1,6 +1,6 @@
 import React from "react";
-import { Outlet } from "@remix-run/react";
-import { Container } from "~/components/bggStats/pages/layout";
+import { Outlet } from "react-router-dom";
+import { Container } from "~/components/pages/layout";
 
 export default function tools() {
   return (

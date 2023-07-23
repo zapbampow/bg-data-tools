@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "@remix-run/react";
+import { useParams } from "react-router-dom";
 import { getUserInfo } from "~/services/bggService";
 import type { UserInfo } from "~/models/bgg/userInfo";
 import { db } from "~/services/db";

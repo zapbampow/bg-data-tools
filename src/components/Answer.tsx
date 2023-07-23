@@ -1,8 +1,8 @@
 import React from "react";
-import { Container } from "~/components/bggStats/pages/layout";
+import { Container } from "~/components/pages/layout";
 import type { PlayDataModel } from "~/models/bgg/gameDataModels";
 import type { FilterType } from "~/services/queryService/types";
-import RecordedPlays from "~/components/bggStats/answers/RecordedPlays";
+import RecordedPlays from "~/components/answers/RecordedPlays";
 
 type Props = {
   answer: string[] | PlayDataModel[];

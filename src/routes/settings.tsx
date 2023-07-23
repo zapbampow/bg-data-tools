@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
-import { Container } from "~/components/bggStats/pages/layout";
 import useManageData from "~/hooks/bgg/useManageData";
 import { Transition } from "@headlessui/react";
-import { Link } from "@remix-run/react";
+import { Link } from "react-router-dom";
 
 export default function Settings() {
   const { users, deleteUserData, processing, error } = useManageData();

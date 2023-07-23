@@ -5,7 +5,7 @@ import Calendar from "react-calendar/dist/cjs";
 import dayjs from "dayjs";
 import { usePlayCountCardContext } from "./PlayCountCardContext";
 import monthNum from "../DatesCard/utils/monthNum";
-import { usePlayFilterContext } from "~/contexts/bggStats/playFilterContext";
+import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import { useCalendarScreenContext } from "../CalendarScreenContext";
 import DayInfo from "./DayInfo";
 

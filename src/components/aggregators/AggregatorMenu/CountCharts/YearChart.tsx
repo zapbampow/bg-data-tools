@@ -13,7 +13,7 @@ import { Bar, getElementAtEvent } from "react-chartjs-2";
 import type { DateGroup } from "../../types";
 import getYearChartData from "../../DatesCard/utils/getYearChartData";
 import type { Screen } from "../../types";
-import { usePlayFilterContext } from "~/contexts/bggStats/playFilterContext";
+import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import { useCalendarScreenContext } from "../../CalendarScreenContext";
 
 ChartJS.register(

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import DatePicker from "react-date-picker";
-import { usePlayFilterContext } from "~/contexts/bggStats/playFilterContext";
+import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import {
   ChevronLeft,
   ChevronRight,
@@ -10,9 +10,9 @@ import {
   Times,
   Trash,
 } from "../icons";
-import { baseStyles, hoverStyles } from "~/components/bggStats/styles";
+import { baseStyles, hoverStyles } from "~/components/styles";
 import type { FilterType } from "~/services/queryService/types";
-import { RemoveFilter } from "~/components/bggStats/filters";
+import { RemoveFilter } from "~/components/filters";
 
 interface Props {
   filter: FilterType;

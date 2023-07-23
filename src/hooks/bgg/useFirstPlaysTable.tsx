@@ -8,7 +8,7 @@ import {
   sortingFns,
   getSortedRowModel,
 } from "@tanstack/react-table";
-import { ExternalLink } from "~/components/bggStats/icons";
+import { ExternalLink } from "~/components/icons";
 import type { FirstRecordRow } from "~/utils/conversion/getFirstPlayDateFromPlays";
 
 export default function useFirstPlaysTable(filteredPlays: FirstRecordRow[]) {

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
 import type { PlayDataModel } from "~/models/bgg/gameDataModels";
-import { usePlayResultsContext } from "~/contexts/bggStats/playResultsContext";
+import { usePlayResultsContext } from "~/contexts/playResultsContext";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -13,7 +13,7 @@ import { Pie, getDatasetAtEvent, getElementAtEvent } from "react-chartjs-2";
 import type { InteractionItem } from "chart.js";
 import { Card, CardTitle, CardSummary } from "./Card";
 import { ChartColors } from "./ChartColors";
-import { usePlayFilterContext } from "~/contexts/bggStats/playFilterContext";
+import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import type { Data } from "./types";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Filler);

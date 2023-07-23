@@ -1,12 +1,4 @@
-import type { ActionFunctionArgs } from "react-router-dom";
-import { redirect } from "react-router-dom";
 import UsernameForm from "~/components/forms/UsernameForm";
-
-export async function action({ request }: ActionFunctionArgs) {
-  const body = await request.formData();
-  const username = body.get("username");
-  return redirect(`${username}`);
-}
 
 export default function BGGStatsHome() {
   return (

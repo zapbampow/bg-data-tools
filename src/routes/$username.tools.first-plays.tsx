@@ -1,31 +1,31 @@
 import React, { useEffect, useReducer } from "react";
-import { useParams } from "@remix-run/react";
+import { useParams } from "react-router-dom";
 import { getFirstRecordPerGameForUsername } from "~/utils/conversion/getFirstPlayDateFromPlays";
 import type { FirstRecordRow } from "~/utils/conversion/getFirstPlayDateFromPlays";
-import TableWithPagination from "~/components/bggStats/table/TableWithPagination";
+import TableWithPagination from "~/components/table/TableWithPagination";
 import invariant from "tiny-invariant";
 import useFirstPlaysTable from "~/hooks/bgg/useFirstPlaysTable";
 import {
   FirstPlayGameNameFilter,
   FirstPlayDateRangeFilter,
-} from "~/components/bggStats/firstPlays";
-import type { LinksFunction, LoaderFunction } from "@remix-run/node";
+} from "~/components/firstPlays";
+import type { LoaderFunction } from "react-router-dom";
 import datePickerStyles from "~/styles/bggStats/datePickerStyles.css";
 import dayjs from "dayjs";
-import { addUsageData } from "~/services/prismaService/bggStats";
+// import { addUsageData } from "~/services/prismaService/bggStats";
 
-export const loader: LoaderFunction = ({ params }) => {
-  let username = params.username;
-  invariant(username, "Expects a username");
+// export const loader: LoaderFunction = ({ params }) => {
+//   let username = params.username;
+//   invariant(username, "Expects a username");
 
-  console.log(username);
+//   console.log(username);
 
-  if (username) {
-    addUsageData({ username: username as string, page: "first-plays" });
-  }
+//   if (username) {
+//     addUsageData({ username: username as string, page: "first-plays" });
+//   }
 
-  return username;
-};
+//   return username;
+// };
 
 type State = {
   selectedGameName: string;
