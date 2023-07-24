@@ -166,7 +166,7 @@ export default function ComboBoxFilterMultiple({ filter }: Props) {
           visible={visible}
           setVisible={setVisible}
           impactedRef={filterBtnRef}
-          addedWidth={selectionText ? 40 : 2}
+          addedWidth={selectionText ? 44 : 2}
         />
       )}
       <div
