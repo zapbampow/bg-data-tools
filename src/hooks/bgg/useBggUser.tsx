@@ -10,6 +10,8 @@ export function useBggUser() {
   const [error, setError] = useState<string | undefined>();
 
   const handleUserName = async (username: string) => {
+    if (user) return;
+
     setError(undefined);
 
     const dbUserInfo = await db.users
