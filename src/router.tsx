@@ -8,6 +8,8 @@ import Root from "~/routes/root.tsx";
 import BGGStatsHome from "~/routes/index.tsx";
 import { action as homeAction } from "~/components/forms/UsernameForm.tsx";
 import Username, { loader as usernameLoader } from "~/routes/$username.tsx";
+import Tools, { loader as toolsLoader } from "~/routes/$username.tools.tsx";
+import FirstPlays from "~/routes/$username.tools.first-plays.tsx";
 import PlayDashboard from "~/routes/$username.plays.tsx";
 /**
  * TODO
@@ -19,14 +21,11 @@ import PlayDashboard from "~/routes/$username.plays.tsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
-      <Route path="/" element={<BGGStatsHome />} action={homeAction}></Route>
+      <Route path="/" element={<BGGStatsHome />} action={homeAction} />
       <Route path="/:username/plays" element={<PlayDashboard />} />
-      <Route
-        path="/:username"
-        element={<Username />}
-        loader={usernameLoader}
-        // action={homeAction}
-      ></Route>
+      <Route path="/:username/tools/first-plays" element={<FirstPlays />} />
+      <Route path="/:username/tools" element={<Tools />} loader={toolsLoader} />
+      <Route path="/:username" element={<Username />} loader={usernameLoader} />
     </Route>
   )
 );

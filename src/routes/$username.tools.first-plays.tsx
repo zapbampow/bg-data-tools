@@ -80,9 +80,9 @@ const reducer = (state: State, action: Action) => {
   }
 };
 
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: datePickerStyles }];
-};
+// export const links: LinksFunction = () => {
+//   return [{ rel: "stylesheet", href: datePickerStyles }];
+// };
 
 export default function FirstPlays() {
   const { username } = useParams();
@@ -113,9 +113,9 @@ export default function FirstPlays() {
   const table = useFirstPlaysTable(filteredPlays);
 
   return (
-    <div>
+    <div className="w-full lg:w-[960px] xl:w-[1024] 2xl:w-[1280] mx-auto">
       <h1 className="text-5xl font-semibold text-white">
-        First Recorded Played Finder
+        Find your first recorded plays
       </h1>
       <p className="mt-2 text-white">
         Find the first time you recorded a play of a given game or all the games

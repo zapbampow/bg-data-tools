@@ -14,28 +14,28 @@ import { useParams, Link } from "react-router-dom";
 const allLinks = (username: string | undefined) => {
   const linkOptions = [
     {
-      href: "/bggstats/about",
+      href: "/about",
       label: "About",
       icon: <Info width={16} />,
     },
     {
-      href: "/bggstats/how-to-use",
+      href: "/how-to-use",
       label: "How to Use",
       icon: <SignRight width={16} />,
     },
     {
-      href: `/bggstats/${username}/tools/first-plays`,
+      href: `/${username}/tools/first-plays`,
       label: "First Recorded Plays Tool",
       icon: <Meeple width={16} />,
       onlyWithUsername: true,
     },
     {
-      href: "/bggstats/settings",
+      href: "/settings",
       label: "Manage your data",
       icon: <Settings width={16} />,
     },
     {
-      href: "/bggstats/feedback",
+      href: "/feedback",
       label: "Feedback",
       icon: <Send width={16} />,
     },
