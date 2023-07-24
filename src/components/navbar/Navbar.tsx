@@ -10,9 +10,9 @@ export default function Navbar() {
       <a href="/bggstats" className="flex text-slate-100">
         <HomeMeeple width={24} />
       </a>
-      <div className="flex items-center text-xl font-medium text-slate-100">
+      {/* <div className="flex items-center text-xl font-medium text-slate-100">
         {username && `Play data for ${username}`}
-      </div>
+      </div> */}
 
       <div className="relative">
         <NavMenu />
