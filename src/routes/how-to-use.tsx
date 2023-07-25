@@ -1,4 +1,3 @@
-// import Markdown from "~/content/bggStats/how-to-use.mdx";
 import "~/styles/bggStats/markdownStyles.css";
 
 export default function about() {

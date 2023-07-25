@@ -1,8 +1,6 @@
-// import Markdown from "~/content/bggStats/about.mdx";
 import "~/styles/bggStats/markdownStyles.css";
 
 export default function about() {
-  // console.log("markdown", Markdown);
   return (
     <div className="w-full lg:w-[764px] px-2 mx-auto pb-8">
       <div className="p-8 mb-16 rounded-md markdown bg-slate-100">
