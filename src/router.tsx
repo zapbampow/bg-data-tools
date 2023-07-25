@@ -11,6 +11,7 @@ import Username, { loader as usernameLoader } from "~/routes/$username.tsx";
 import Tools, { loader as toolsLoader } from "~/routes/$username.tools.tsx";
 import FirstPlays from "~/routes/$username.tools.first-plays.tsx";
 import PlayDashboard from "~/routes/$username.plays.tsx";
+import Settings from "~/routes/settings.tsx";
 /**
  * TODO
  * Add routes using same paths as original
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
       <Route path="/:username/tools/first-plays" element={<FirstPlays />} />
       <Route path="/:username/tools" element={<Tools />} loader={toolsLoader} />
       <Route path="/:username" element={<Username />} loader={usernameLoader} />
+      <Route path="/settings" element={<Settings />} />
     </Route>
   )
 );
