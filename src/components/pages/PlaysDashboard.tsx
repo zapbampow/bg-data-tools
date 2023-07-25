@@ -3,7 +3,7 @@ import { useBggUser } from "~/hooks/bgg/useBggUser";
 import usePlayData from "~/hooks/bgg/usePlayData";
 import RecordedPlays from "../answers/RecordedPlays";
 import useFilteredData from "~/contexts/useFilteredData";
-import AggregatorRow from "../aggregators/AggregatorRow";
+import Aggregators from "../aggregators";
 import DownloadProgress from "../DownloadProgress";
 import { useEffect } from "react";
 import UsernameForm from "../forms/UsernameForm";
@@ -45,7 +45,7 @@ export default function PlaysDashboard() {
         error={error}
         userFirstTime={userFirstTime}
       />
-      <AggregatorRow userId={user.userId} />
+      <Aggregators userId={user.userId} />
       <FilterBar />
       <RecordedPlays />
     </div>

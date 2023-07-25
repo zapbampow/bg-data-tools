@@ -11,6 +11,7 @@ import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import MonthCalendar from "./MonthCalendar";
 import { useCalendarScreenContext } from "../CalendarScreenContext";
 import dayjs from "dayjs";
+import RemoveCardButton from "../RemoveCardButton.tsx";
 
 type Props = {
   userId: number;
@@ -76,6 +77,7 @@ export default function DatesCard({ userId }: Props) {
       <div>
         <BackButton />
         <CardTitle>{title}</CardTitle>
+        <RemoveCardButton card="daysPlayed" />
       </div>
 
       {screen === "year" && (

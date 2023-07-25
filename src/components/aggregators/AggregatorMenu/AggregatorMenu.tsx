@@ -1,10 +1,11 @@
 import { Menu, Switch } from "@headlessui/react";
 import { Settings, Dots } from "../../icons";
 import { baseStyles, smallBaseStyles, openMenuStyles } from "../../styles";
+import type { Setting } from "../AggregatorContext.tsx";
 
 type Props = {
-  settings: string[];
-  setSettings: (settings: string[]) => void;
+  settings: Setting[];
+  setSettings: (settings: Setting[]) => void;
 };
 
 type Option = { value: string; label: string };

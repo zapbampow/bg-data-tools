@@ -8,19 +8,18 @@ import { useLocalStorage } from "~/hooks/useLocalStorage";
 import AggregatorMenu from "./AggregatorMenu/AggregatorMenu";
 import PlayCountCard from "./PlayCountCard";
 import { CalendarScreenProvider } from "./CalendarScreenContext";
+import { useAggregatorContext } from "./AggregatorContext.tsx";
 
 type Props = {
   userId: number;
 };
 
 export default function AggregatorRow({ userId }: Props) {
-  const [settings, setSettings] = useLocalStorage("aggregators", [
-    "daysPlayed",
-    "players",
-    "locations",
-    "recordedPlays",
-    "playCount",
-  ]);
+  const { settings, setSettings } = useAggregatorContext();
+
+  React.useEffect(() => {
+    console.log("settings", settings);
+  }, [settings]);
 
   return (
     <CalendarScreenProvider>

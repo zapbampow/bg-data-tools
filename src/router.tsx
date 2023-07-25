@@ -21,6 +21,7 @@ import HowToUse from "~/routes/how-to-use.tsx";
  * Add routes using same paths as original
  * Add loaders and actions to routes
  * Add Error Elements to routes
+ * FINISH: you added aggregator context. And you added MINUS symbol to # Days Played card. Add that to the other cards
  */
 
 const router = createBrowserRouter(
