@@ -9,6 +9,7 @@ import MonthsChart from "../AggregatorMenu/CountCharts/MonthsChart";
 import MonthCalendar from "./MonthCalendar";
 import BackButton from "./BackButton";
 import { useCalendarScreenContext } from "../CalendarScreenContext";
+import RemoveCardButton from "../RemoveCardButton.tsx";
 
 type Props = {
   userId: number;
@@ -65,6 +66,7 @@ export default function PlayCountCard({ userId }: Props) {
       <div>
         <BackButton />
         <CardTitle>{title}</CardTitle>
+        <RemoveCardButton card="playCount" />
       </div>
 
       {screen === "year" && (

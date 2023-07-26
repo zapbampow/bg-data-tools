@@ -17,10 +17,6 @@ type Props = {
 export default function AggregatorRow({ userId }: Props) {
   const { settings, setSettings } = useAggregatorContext();
 
-  React.useEffect(() => {
-    console.log("settings", settings);
-  }, [settings]);
-
   return (
     <CalendarScreenProvider>
       <Container className="relative mb-8">

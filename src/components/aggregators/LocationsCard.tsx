@@ -15,6 +15,7 @@ import { Card, CardTitle, CardSummary } from "./Card";
 import { ChartColors } from "./ChartColors";
 import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import type { Data } from "./types";
+import RemoveCardButton from "./RemoveCardButton.tsx";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Filler);
 
@@ -116,6 +117,7 @@ export default function LocationsCard() {
   return (
     <Card>
       <CardTitle>Locations</CardTitle>
+      <RemoveCardButton card="locations" />
       <Pie
         ref={chartRef}
         updateMode="show"

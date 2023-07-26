@@ -2,9 +2,15 @@ type Props = {
   width?: number;
   className?: string;
   strokeWidth?: number;
+  stroke?: string;
 };
 
-export default function Times({ width, strokeWidth = 2, className }: Props) {
+export default function Times({
+  width = 24,
+  strokeWidth = 2,
+  className,
+  stroke = "currentColor",
+}: Props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -13,7 +19,7 @@ export default function Times({ width, strokeWidth = 2, className }: Props) {
       height={width}
       viewBox="0 0 24 24"
       strokeWidth={strokeWidth}
-      stroke="currentColor"
+      stroke={stroke}
       fill="none"
       strokeLinecap="round"
       strokeLinejoin="round"

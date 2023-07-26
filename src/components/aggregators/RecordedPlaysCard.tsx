@@ -6,6 +6,7 @@ import {
   getInitialPlayData,
 } from "~/services/queryService/queryService";
 import { Card, CardSummary, CardTitle } from "./Card";
+import RemoveCardButton from "./RemoveCardButton.tsx";
 
 type Props = {
   userId: number;
@@ -36,8 +37,9 @@ export default function RecordedPlaysCard({ userId }: Props) {
   return (
     <Card>
       <CardTitle>Total Plays</CardTitle>
+      <RemoveCardButton card="recordedPlays" />
 
-      <div className="grow flex justify-center items-center text-4xl font-semibold">
+      <div className="flex items-center justify-center text-4xl font-semibold grow">
         {count.toLocaleString("en-US")}
       </div>
     </Card>
