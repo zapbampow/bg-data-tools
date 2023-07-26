@@ -1,6 +1,5 @@
 import { Menu, Switch } from "@headlessui/react";
-import { Settings, Dots } from "../../icons";
-import { baseStyles, smallBaseStyles, openMenuStyles } from "../../styles";
+import { Dots } from "../../icons";
 import type { Setting } from "../AggregatorContext.tsx";
 
 type Props = {
@@ -8,9 +7,10 @@ type Props = {
   setSettings: (settings: Setting[]) => void;
 };
 
-type Option = { value: string; label: string };
+type Option = { value: Setting; label: string };
 
 export default function AggregatorMenu({ settings, setSettings }: Props) {
+  console.log("settings", settings);
   const settingOptions: Option[] = [
     { value: "daysPlayed", label: "# Days Played" },
     { value: "players", label: "Players" },
@@ -19,8 +19,8 @@ export default function AggregatorMenu({ settings, setSettings }: Props) {
     { value: "playCount", label: "# Plays By Date" },
   ];
 
-  const handleChange = (option: string, value: boolean) => {
-    let optionInSettings = settings.includes(option);
+  const handleChange = (option: Setting, value: boolean) => {
+    let optionInSettings = settings.some((setting) => setting === option);
 
     if (optionInSettings) {
       let newSettings = settings.filter((setting) => setting !== option);
@@ -44,7 +44,7 @@ export default function AggregatorMenu({ settings, setSettings }: Props) {
         className={`absolute left-0 flex flex-col gap-4 p-4 rounded-md border-[1px] border-slate-400 bg-slate-100 shadow-md shadow-slate-500/40  z-10  w-max`}
       >
         {settingOptions.map((option) => {
-          const enabled = settings.includes(option.value);
+          const enabled = settings.some((setting) => setting === option.value);
 
           return (
             <Menu.Item
