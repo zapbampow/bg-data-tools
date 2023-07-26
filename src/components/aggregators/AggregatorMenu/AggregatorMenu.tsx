@@ -10,7 +10,6 @@ type Props = {
 type Option = { value: Setting; label: string };
 
 export default function AggregatorMenu({ settings, setSettings }: Props) {
-  console.log("settings", settings);
   const settingOptions: Option[] = [
     { value: "daysPlayed", label: "# Days Played" },
     { value: "players", label: "Players" },
