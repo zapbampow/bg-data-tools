@@ -1,5 +1,5 @@
 import type { PlayDataModel } from "~/models/bgg/gameDataModels.js";
-import { TrophyFilled } from "../icons";
+import { TrophyFilled, ExternalLink } from "../icons";
 import dayjs from "dayjs";
 import PaginationRow from "./PaginationRow.js";
 import type { Table as TableType } from "@tanstack/table-core";
@@ -29,7 +29,7 @@ function Card({ data }: { data: PlayDataModel }) {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <div className="grid gap-6 p-2 bg-white border rounded">
+      <div className="grid gap-6 rounded border bg-white p-2">
         <div className="grid">
           <div className="text-2xl font-semibold">{data.gameName}</div>
           {data.players.length > 0 && (
@@ -51,12 +51,7 @@ function Card({ data }: { data: PlayDataModel }) {
 const Names = ({ players }: { players: PlayDataModel["players"] }) => {
   let names = players.map((pdata, i, arr) => {
     let length = arr.length;
-    let {
-      userId,
-      name,
-      win,
-      // new: firstPlay
-    } = pdata;
+    let { userId, name, win, new: firstPlay } = pdata;
     return (
       <span className="inline-flex items-center" key={`${name}${userId}`}>
         {win ? (

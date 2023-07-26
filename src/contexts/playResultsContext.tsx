@@ -8,10 +8,7 @@ type Action = {
 };
 type Dispatch = (action: Action) => void;
 
-const reducer = (
-  // state: PlayDataModel[],
-  action: Action
-) => {
+const reducer = (state: PlayDataModel[], action: Action) => {
   switch (action.type) {
     case "setFilteredResults":
       return action.payload;

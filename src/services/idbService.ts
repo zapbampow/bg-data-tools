@@ -1,5 +1,5 @@
 import { db, StoreName } from "./db";
-import { Collection } from "dexie";
+import { Table, IndexableType, Collection } from "dexie";
 
 export const getLatestPlayData = async (userId: number) => {
   const latestPlay = await db.plays
@@ -96,10 +96,10 @@ class IDBCollection {
     return this.filtered;
   }
 
-  // withPlayer(player: string) {
-  //   // this.filtered = this.collection.filter(item => item.player === player);
-  //   // return this.filtered;
-  // }
+  withPlayer(player: string) {
+    // this.filtered = this.collection.filter(item => item.player === player);
+    // return this.filtered;
+  }
 
   where(keyName: string, operator: OperatorType, value: any) {
     // Initial test assumes a single value, not array
@@ -119,13 +119,13 @@ export const store = (storeName: StoreName, userId: number) =>
 
 type OperatorType = "equals" | "isAbove" | "equalsOrAbove";
 
-// function handleOperator(operator: OperatorType) {
-//   switch (operator) {
-//     case "equals":
-//       return "===";
-//     case "isAbove":
-//       return ">";
-//     case "equalsOrAbove":
-//       return ">=";
-//   }
-// }
+function handleOperator(operator: OperatorType) {
+  switch (operator) {
+    case "equals":
+      return "===";
+    case "isAbove":
+      return ">";
+    case "equalsOrAbove":
+      return ">=";
+  }
+}

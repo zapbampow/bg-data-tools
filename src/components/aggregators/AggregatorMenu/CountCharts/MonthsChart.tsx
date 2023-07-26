@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React, { Dispatch, SetStateAction, useRef, useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,6 +11,7 @@ import {
 import { Bar, getElementAtEvent } from "react-chartjs-2";
 import type { DateGroup } from "../../types";
 import getMonthsChartDataByYear from "../../DatesCard/utils/getMonthsChartDataByYear";
+import type { Screen } from "../../types";
 import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import monthNum from "../../DatesCard/utils/monthNum";
 import dayjs from "dayjs";
@@ -48,7 +49,7 @@ const getDataFromEvent = (e, chartRef, data) => {
   const el = getElementAtEvent(chartRef.current, e);
 
   if (!el.length) return;
-  const { index } = el[0];
+  const { datasetIndex, index } = el[0];
   const dataFromEvent = data?.labels[index];
 
   return dataFromEvent;
@@ -63,9 +64,10 @@ export default function MonthsChart({ data }: Props) {
   const {
     state: { year },
     setMonth,
+    setYear,
     setScreen,
   } = useCalendarScreenContext();
-  const chartRef = useRef<any>();
+  const chartRef = useRef();
 
   // if (!year) {
   //   let item = filterState.find((item) => {

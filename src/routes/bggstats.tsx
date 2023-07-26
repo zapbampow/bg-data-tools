@@ -1,4 +1,9 @@
 import { Outlet } from "react-router-dom";
+import type {
+  // LinksFunction,
+  // V2_MetaFunction,
+  LoaderFunction,
+} from "react-router-dom";
 import "~/styles/bggStats/username.css";
 
 import Navbar from "~/components/navbar";
@@ -42,7 +47,7 @@ export default function BggStats() {
 
   return (
     <Suspense fallback={<Fallback />}>
-      <div className="relative min-h-screen bgg-gradient bg-slate-200">
+      <div className="bgg-gradient relative min-h-screen bg-slate-200">
         <Navbar />
         <Outlet />
       </div>

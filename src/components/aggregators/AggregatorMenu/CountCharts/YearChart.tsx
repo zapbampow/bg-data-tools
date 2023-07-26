@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import type { UIEvent } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import type { Dispatch, SetStateAction, Event } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,6 +12,7 @@ import {
 import { Bar, getElementAtEvent } from "react-chartjs-2";
 import type { DateGroup } from "../../types";
 import getYearChartData from "../../DatesCard/utils/getYearChartData";
+import type { Screen } from "../../types";
 import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import { useCalendarScreenContext } from "../../CalendarScreenContext";
 
@@ -47,7 +48,7 @@ const getDataFromEvent = (e: UIEvent, chartRef, data) => {
   const el = getElementAtEvent(chartRef.current, e);
 
   if (!el.length) return;
-  const { index } = el[0];
+  const { datasetIndex, index } = el[0];
   const dataFromEvent = data?.labels[index];
 
   return dataFromEvent;
@@ -61,11 +62,11 @@ type Props = {
 export default function YearChart({ data, setYear, setFilterOrder }: Props) {
   const { state: filterState, dispatch } = usePlayFilterContext();
   const { setScreen } = useCalendarScreenContext();
-  const chartRef = useRef<any>();
+  const chartRef = useRef();
   const yearData = getYearChartData(data);
   // console.log("yearData", yearData);
 
-  const handleClick = (e: UIEvent) => {
+  const handleClick = (e: Event) => {
     const year = getDataFromEvent(e, chartRef, yearData);
     if (!year) return;
 
@@ -92,7 +93,7 @@ export default function YearChart({ data, setYear, setFilterOrder }: Props) {
     });
   };
 
-  const handleMouseMove = (e: UIEvent) => {
+  const handleMouseMove = (e: Event) => {
     if (!chartRef?.current) return;
     const label = getDataFromEvent(e, chartRef, yearData);
 

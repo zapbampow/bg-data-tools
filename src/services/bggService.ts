@@ -23,7 +23,7 @@ export async function fetchXmlPlayData(options: FetchOptions) {
     const fetch = fetchRetry(originalFetch);
     const res = await fetch(query, {
       retries: 7,
-      retryDelay: function (attempt, error) {
+      retryDelay: function (attempt, error, response) {
         if (error) console.error("fetch retry error", error);
         return Math.pow(8, attempt) * 1000; // 1000, 8000, 64000
       },
@@ -196,7 +196,7 @@ export async function getUserInfo(
     const fetch = fetchRetry(originalFetch);
     const res = await fetch(query, {
       retries: 7,
-      retryDelay: function (attempt) {
+      retryDelay: function (attempt, error, response) {
         return Math.pow(8, attempt) * 1000; // 1000, 2000, 4000
       },
     });
