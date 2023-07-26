@@ -9,19 +9,39 @@ import {
   Send,
   SignRight,
 } from "../icons";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 
-const allLinks = (username: string | undefined) => {
-  const linkOptions = [
+const resourceLinks = [
+  {
+    href: "/about",
+    label: "About",
+    icon: <Info width={16} />,
+  },
+  {
+    href: "/how-to-use",
+    label: "How to Use",
+    icon: <SignRight width={16} />,
+  },
+  {
+    href: "/feedback",
+    label: "Feedback",
+    icon: <Send width={16} />,
+  },
+  // {
+  //   href: "https://github.com/zapbampow/bggStats",
+  //   label: "See the code",
+  //   external: true,
+  //   icon: <GithubIcon />,
+  // },
+];
+
+const toolLinks = (username: string | undefined, pathname: string) => {
+  let links = [
     {
-      href: "/about",
-      label: "About",
-      icon: <Info width={16} />,
-    },
-    {
-      href: "/how-to-use",
-      label: "How to Use",
-      icon: <SignRight width={16} />,
+      href: `/${username}/plays`,
+      label: "Plays Dashboard",
+      icon: <Meeple width={16} />,
+      onlyWithUsername: true,
     },
     {
       href: `/${username}/tools/first-plays`,
@@ -34,37 +54,50 @@ const allLinks = (username: string | undefined) => {
       label: "Manage your data",
       icon: <Settings width={16} />,
     },
-    {
-      href: "/feedback",
-      label: "Feedback",
-      icon: <Send width={16} />,
-    },
-    {
-      href: "https://github.com/zapbampow/bggStats",
-      label: "See the code",
-      external: true,
-      icon: <GithubIcon />,
-    },
   ];
 
-  return linkOptions.filter((link) => {
+  return links.filter((link) => {
+    // if no username, only show links that don't require a username
     if (!username) return !link?.onlyWithUsername;
+
+    // don't show the current page
+    const endOfPath = pathname.split("/").pop();
+    const endOfLink = link.href.split("/").pop();
+    if (endOfPath === endOfLink) return false;
+
     return true;
   });
 };
 
+const h3Styles = "text-sm font-semibold uppercase opacity-60";
+
 export default function NavMenu() {
   const { username } = useParams();
+  const { pathname } = useLocation();
 
-  const links = allLinks(username);
+  const tools = toolLinks(username, pathname);
 
   return (
     <Menu>
       <Menu.Button className="text-slate-100">
         <MenuIcon />
       </Menu.Button>
-      <Menu.Items className="absolute right-0 top-8 z-10 flex w-max flex-col gap-4 rounded-md bg-slate-900 p-4 text-white">
-        {links?.map((link) => (
+
+      <Menu.Items className="absolute right-0 z-10 flex flex-col gap-4 p-4 text-white rounded-md top-8 w-max bg-slate-900">
+        <h3 className={h3Styles}>Tools</h3>
+
+        {tools?.map((link) => (
+          <Menu.Item key={link.href} as={Fragment}>
+            <Link to={link.href}>
+              <div className="flex items-center gap-2">
+                {link.icon} {link.label}
+              </div>
+            </Link>
+          </Menu.Item>
+        ))}
+
+        <h3 className={h3Styles}>Resources</h3>
+        {resourceLinks?.map((link) => (
           <Menu.Item key={link.href} as={Fragment}>
             {link.external ? (
               <a
