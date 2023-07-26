@@ -31,12 +31,17 @@ function usePlayData(props: Props) {
   const [percentDone, setPercentDone] = useState(0);
   const [error, setError] = useState(null);
   const [userFirstTime, setUserFirstTime] = useState(false);
+  const [fetching, setFetching] = useState(false); // prevents repeatedly fetching on load
 
   const handleFetching = async (user: UserInfo) => {
+    if (fetching) return;
+
     try {
       if (!user) {
         throw Error("We cannot fetch user play data unless a user is set.");
       }
+
+      setFetching(true);
 
       const { latestPlayDate, latestPlayId } = await getLatestPlayData(
         user.userId
@@ -77,10 +82,12 @@ function usePlayData(props: Props) {
         }
         setError(null);
       }
+      setFetching(false);
     } catch (err) {
       console.log(err);
       setPercentDone(0);
       setError(err.message);
+      setFetching(false);
       throw Error(err);
     }
   };
