@@ -60,6 +60,7 @@ export default function AddFilterButton({ addFilterButton, display }: Props) {
     const aggregator = state.find((f) => f.order === "aggregator");
     // console.log("aggregator", aggregator?.filter);
     if (aggregator?.filter) {
+      // @ts-ignore
       const tree = filterTree[aggregator.filter];
       const { filters, ...filterOptions } = tree;
       // console.log("filters", filters);
@@ -133,6 +134,7 @@ const convertFiltersToArray = (filters: any) => {
   return Object.entries(filters)
     .map((filterGroup) => {
       const heading = { value: "heading", label: filterGroup[0] };
+      // @ts-ignore
       const options = [...filterGroup[1]];
       // console.log("filterGroup[1]", filterGroup[1]);
       return [heading, ...options];
