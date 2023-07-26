@@ -7,7 +7,7 @@ export function Component() {
       <div className="p-8 mb-16 rounded-md markdown bg-slate-100">
         <h1>Feedback</h1>
 
-        <h2>BGG</h2>
+        <h4>Reach out to me on BoardGameGeek</h4>
         <ul>
           <li>
             <a
@@ -33,7 +33,7 @@ export function Component() {
           </li>
         </ul>
 
-        <h2>Github</h2>
+        {/* <h2>Github</h2>
         <p>
           If you're a programmer and are comfortable with Github, you can submit
           an issue in this app's repository or even submit a pull request if
@@ -49,7 +49,7 @@ export function Component() {
             <GithubIcon className="text-black" />
             The Repo
           </a>
-        </p>
+        </p> */}
       </div>
     </div>
   );

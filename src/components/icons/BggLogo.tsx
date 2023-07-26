@@ -1,5 +1,3 @@
-import React from "react";
-
 type Props = {
   width?: number;
   height?: number;
@@ -12,7 +10,7 @@ export default function BggLogo({ width, height }: Props) {
       height={height}
       viewBox={`0 0 26 38`}
     >
-      <g fill="none" fill-rule="evenodd">
+      <g fill="none" fillRule="evenodd">
         <polygon
           // fill="#FF5100"
           // stroke="#ff5100"
