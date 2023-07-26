@@ -1,16 +1,5 @@
-import React from "react";
 import type { PlayDataModel } from "~/models/bgg/gameDataModels";
-import {
-  createColumnHelper,
-  flexRender,
-  getCoreRowModel,
-  useReactTable,
-  getPaginationRowModel,
-  sortingFns,
-  getSortedRowModel,
-} from "@tanstack/react-table";
-import { ExternalLink } from "../icons";
-import { Container } from "../pages/layout";
+import { flexRender } from "@tanstack/react-table";
 import PaginationRow from "./PaginationRow";
 import type { Table as TableType } from "@tanstack/table-core";
 import type { FirstRecordRow } from "~/utils/conversion/getFirstPlayDateFromPlays";
@@ -24,17 +13,17 @@ export default function TableWithPagination({ table }: Props) {
   return (
     <>
       <table
-        className="w-full border-separate rounded-tl-md rounded-tr-md border bg-white"
+        className="w-full bg-white border border-separate rounded-tl-md rounded-tr-md"
         style={{ borderSpacing: 0 }}
       >
-        <thead className="w-full border-spacing-2 border-b">
+        <thead className="w-full border-b border-spacing-2">
           {
             // Loop over the header rows
             table.getHeaderGroups().map((headerGroup) => (
               // Apply the header row props
               <tr
                 key={headerGroup.id}
-                className="w-full rounded text-left"
+                className="w-full text-left rounded"
                 style={{ borderSpacing: "1 !important" }}
               >
                 {

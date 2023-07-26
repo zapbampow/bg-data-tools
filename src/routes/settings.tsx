@@ -20,7 +20,7 @@ export function Component() {
         <ErrorMessage error={error} />
 
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-          {users?.map((user, i) => (
+          {users?.map((user) => (
             <li
               key={user.userId}
               className="flex flex-col items-center justify-between p-4 border rounded-md border-slate-800"

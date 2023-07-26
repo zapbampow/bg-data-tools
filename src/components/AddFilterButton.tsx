@@ -6,7 +6,6 @@ import {
   baseStyles,
   openButtonStyles,
   openMenuStyles,
-  hoverStyles,
   comboActiveItem,
   baseSelectItem,
 } from "./styles";
@@ -38,7 +37,7 @@ type Props = {
 };
 
 export default function AddFilterButton({ addFilterButton, display }: Props) {
-  const { state, dispatch } = usePlayFilterContext();
+  const { state } = usePlayFilterContext();
 
   const [selectedValue, setSelectedValue] = useState<SelectionType>({
     label: "",
@@ -107,7 +106,7 @@ export default function AddFilterButton({ addFilterButton, display }: Props) {
                       value={option}
                       as={Fragment}
                     >
-                      {({ active, selected }) => (
+                      {({ active }) => (
                         <li
                           className={`${baseSelectItem} ${
                             active ? comboActiveItem : ""
@@ -131,7 +130,7 @@ export default function AddFilterButton({ addFilterButton, display }: Props) {
 const convertFiltersToArray = (filters: any) => {
   // console.log("filters", filters);
   return Object.entries(filters)
-    .map((filterGroup) => {
+    .map((filterGroup: unknown) => {
       const heading = { value: "heading", label: filterGroup[0] };
       const options = [...filterGroup[1]];
       // console.log("filterGroup[1]", filterGroup[1]);

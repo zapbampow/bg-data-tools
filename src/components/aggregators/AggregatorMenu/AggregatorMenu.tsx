@@ -1,6 +1,5 @@
 import { Menu, Switch } from "@headlessui/react";
-import { Settings, Dots } from "../../icons";
-import { baseStyles, smallBaseStyles, openMenuStyles } from "../../styles";
+import { Dots } from "../../icons";
 import type { Setting } from "../AggregatorContext.tsx";
 
 type Props = {
@@ -8,7 +7,7 @@ type Props = {
   setSettings: (settings: Setting[]) => void;
 };
 
-type Option = { value: string; label: string };
+type Option = { value: Setting; label: string };
 
 export default function AggregatorMenu({ settings, setSettings }: Props) {
   const settingOptions: Option[] = [
@@ -19,7 +18,7 @@ export default function AggregatorMenu({ settings, setSettings }: Props) {
     { value: "playCount", label: "# Plays By Date" },
   ];
 
-  const handleChange = (option: string, value: boolean) => {
+  const handleChange = (option: Setting) => {
     let optionInSettings = settings.includes(option);
 
     if (optionInSettings) {
@@ -43,7 +42,7 @@ export default function AggregatorMenu({ settings, setSettings }: Props) {
       <Menu.Items
         className={`absolute left-0 flex flex-col gap-4 p-4 rounded-md border-[1px] border-slate-400 bg-slate-100 shadow-md shadow-slate-500/40  z-10  w-max`}
       >
-        {settingOptions.map((option) => {
+        {settingOptions.map((option: Option) => {
           const enabled = settings.includes(option.value);
 
           return (
@@ -54,9 +53,7 @@ export default function AggregatorMenu({ settings, setSettings }: Props) {
             >
               <Switch
                 checked={enabled}
-                onChange={(newVal: boolean) =>
-                  handleChange(option.value, newVal)
-                }
+                onChange={() => handleChange(option.value)}
                 className={`${
                   enabled ? "bg-blue-600" : "bg-gray-200"
                 } relative inline-flex h-6 w-11 items-center rounded-full`}

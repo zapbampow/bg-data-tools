@@ -54,7 +54,10 @@ export const getInitialPlayData = async (userId: number) => {
   }
 };
 
-export const getRecentPlays = async (userId: number, amount: number) => {
+export const getRecentPlays = async (
+  // userId: number,
+  amount: number
+) => {
   try {
     const plays = await db.plays
       .orderBy("date")

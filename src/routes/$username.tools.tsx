@@ -1,4 +1,3 @@
-import React from "react";
 import { Outlet, redirect } from "react-router-dom";
 import type { LoaderFunction } from "react-router-dom";
 import { Container } from "~/components/pages/layout";

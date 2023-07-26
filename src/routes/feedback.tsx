@@ -1,5 +1,5 @@
 import "~/styles/bggStats/markdownStyles.css";
-import { BggLogo, GithubIcon } from "~/components/icons";
+import { BggLogo } from "~/components/icons";
 
 export function Component() {
   return (

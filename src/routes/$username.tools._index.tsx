@@ -1,9 +1,8 @@
-import React from "react";
 import { Card } from "~/components/aggregators/Card";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Tools() {
-  const params = useParams();
+  // const params = useParams();
 
   return (
     <div className="text-white">

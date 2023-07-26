@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { PlayDataModel } from "~/models/bgg/gameDataModels";
 import { UserInfo } from "~/models/bgg/userInfo";
 import { bulkAddPlays } from "~/services/db";
 import { getLatestPlayData } from "~/services/idbService";
@@ -85,10 +84,10 @@ function usePlayData(props: Props) {
     }
   };
 
-  const handleNoUsername = () => {
-    setPercentDone(0);
-    setError(null);
-  };
+  // const handleNoUsername = () => {
+  //   setPercentDone(0);
+  //   setError(null);
+  // };
 
   useEffect(() => {
     if (user) {
