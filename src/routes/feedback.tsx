@@ -1,7 +1,7 @@
 import "~/styles/bggStats/markdownStyles.css";
 import { BggLogo, GithubIcon } from "~/components/icons";
 
-export default function contact() {
+export function Component() {
   return (
     <div className="w-full lg:w-[764px] px-2 mx-auto pb-8">
       <div className="p-8 mb-16 rounded-md markdown bg-slate-100">

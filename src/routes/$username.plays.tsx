@@ -46,7 +46,7 @@ import invariant from "tiny-invariant";
 //   ];
 // };
 
-function Plays() {
+export function Component() {
   return (
     <PlayFilterProvider>
       <PlayResultsProvider>
@@ -55,5 +55,3 @@ function Plays() {
     </PlayFilterProvider>
   );
 }
-
-export default Plays;

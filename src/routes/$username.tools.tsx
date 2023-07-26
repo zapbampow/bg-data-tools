@@ -10,7 +10,7 @@ export const loader: LoaderFunction = async ({ params }) => {
   return redirect(`/${username}/tools/first-plays`);
 };
 
-export default function tools() {
+export function Component() {
   return (
     <Container>
       {/* <ToolSelector /> */}

@@ -84,7 +84,7 @@ const reducer = (state: State, action: Action) => {
 //   return [{ rel: "stylesheet", href: datePickerStyles }];
 // };
 
-export default function FirstPlays() {
+export function Component() {
   const { username } = useParams();
 
   const [

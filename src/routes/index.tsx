@@ -1,6 +1,15 @@
 import UsernameForm from "~/components/forms/UsernameForm";
+import { redirect } from "react-router-dom";
+import type { ActionFunctionArgs } from "react-router-dom";
 
-export default function BGGStatsHome() {
+export async function action({ request }: ActionFunctionArgs) {
+  const body = await request.formData();
+  const username = body.get("username");
+  console.log("username", username);
+  return redirect(`${username}`);
+}
+
+export function Component() {
   return (
     <div className="absolute flex flex-col items-center -translate-x-1/2 -translate-y-1/3 top-1/3 left-1/2 w-fit sm:w-max">
       <h1 className="mb-8 text-6xl font-semibold text-center text-slate-100">

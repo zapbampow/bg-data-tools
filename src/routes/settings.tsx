@@ -2,7 +2,7 @@ import useManageData from "~/hooks/bgg/useManageData";
 import { Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 
-export default function Settings() {
+export function Component() {
   const { users, deleteUserData, processing, error } = useManageData();
 
   return (
