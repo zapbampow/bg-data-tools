@@ -40,13 +40,10 @@ export default function MonthCalendar({ data }: Props) {
         formatShortWeekday={(locale, date) =>
           dayjs(date).format("dd").slice(0, 1)
         }
-        calendarType="US"
+        calendarType="gregory"
         onClickDay={(value, e) => {
-          let day = dayjs(value).format("YYYY-MM-DD");
-          console.log(day);
-          let dateCount = dates.find((d) => d.day === day);
-          console.log("dateCount", dateCount);
-          console.log("e", e.target);
+          // let day = dayjs(value).format("YYYY-MM-DD");
+          // let dateCount = dates.find((d) => d.day === day);
         }}
         tileContent={({ date, view }) => (
           <DayInfo date={date} view={view} dates={dates} />

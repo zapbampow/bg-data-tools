@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
+import type { MouseEvent } from "react";
 import type { PlayDataModel } from "~/models/bgg/gameDataModels";
 import { usePlayResultsContext } from "~/contexts/playResultsContext";
 import {
@@ -83,7 +84,7 @@ export default function LocationsCard() {
     console.log(data?.datasets[datasetIndex].label);
   };
 
-  const getDataFromEvent = (e) => {
+  const getDataFromEvent = (e: MouseEvent<HTMLCanvasElement>) => {
     if (!chartRef?.current) return;
     const el = getElementAtEvent(chartRef.current, e);
 
@@ -95,7 +96,7 @@ export default function LocationsCard() {
     return dataFromEvent;
   };
 
-  const handleClick = (e) => {
+  const handleClick = (e: MouseEvent<HTMLCanvasElement>) => {
     const location = getDataFromEvent(e);
     if (!location) return;
 

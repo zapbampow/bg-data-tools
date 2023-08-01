@@ -44,12 +44,11 @@ export default function DayInfo({ date, view, dates }: Props) {
     // top: y !== null ? y : 0,
   };
 
-  console.log("style", style);
-
   return (
     <Popover>
       {/* Keeps the calendar date and just overlays a button on top of it */}
       <Popover.Button
+        as="div"
         ref={refs.setReference}
         className="absolute top-0 bottom-0 left-0 right-0"
       />

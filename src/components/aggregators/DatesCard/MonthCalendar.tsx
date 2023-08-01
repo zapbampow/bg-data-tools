@@ -34,7 +34,7 @@ export default function MonthCalendar({ data }: Props) {
         formatShortWeekday={(locale, date) =>
           dayjs(date).format("dd").slice(0, 1)
         }
-        calendarType="US"
+        calendarType="gregory"
         onClickDay={(value) => console.log(value)}
       />
     </div>

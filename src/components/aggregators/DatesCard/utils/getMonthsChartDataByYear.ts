@@ -1,10 +1,7 @@
 import type { Data, DateGroup } from "../../types";
 import { ChartColors } from "../../ChartColors";
 
-export default function getMonthsChartDataByYear(
-  data: DateGroup[],
-  year: number
-): Data {
+export default function getMonthsChartDataByYear(data: DateGroup[]): Data {
   // console.log("data", data);
   const months = data[0]?.months || [];
   const labels = months.map((month) => month.month);

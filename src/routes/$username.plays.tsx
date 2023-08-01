@@ -7,7 +7,7 @@ import type {
 import styles from "~/styles/bggStats/username.css";
 import { PlayFilterProvider } from "~/contexts/playFilterContext";
 import { PlayResultsProvider } from "~/contexts/playResultsContext";
-import datePickerStyles from "~/styles/bggStats/datePickerStyles.css";
+import "~/styles/bggStats/datePickerStyles.css";
 import PlaysDashboard from "~/components/pages/PlaysDashboard";
 import invariant from "tiny-invariant";
 // import { addUsageData } from "~/services/prismaService/bggStats";

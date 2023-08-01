@@ -1,4 +1,5 @@
-import React, { Dispatch, SetStateAction, useRef, useState } from "react";
+import { useRef } from "react";
+import type { MouseEvent, RefObject } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,9 +8,10 @@ import {
   Title,
   Tooltip,
   Legend,
+  Chart,
 } from "chart.js";
 import { Bar, getElementAtEvent } from "react-chartjs-2";
-import type { DateGroup } from "../../types";
+import type { Data, DateGroup } from "../../types";
 import getMonthsChartDataByYear from "../../DatesCard/utils/getMonthsChartDataByYear";
 import type { Screen } from "../../types";
 import { usePlayFilterContext } from "~/contexts/playFilterContext";
@@ -44,9 +46,13 @@ const options = {
   },
 };
 
-const getDataFromEvent = (e, chartRef, data) => {
+const getDataFromEvent = (
+  e: MouseEvent<HTMLCanvasElement>,
+  chartRef: RefObject<Chart>,
+  data: Data
+) => {
   if (!chartRef?.current) return;
-  const el = getElementAtEvent(chartRef.current, e);
+  const el = getElementAtEvent(chartRef?.current, e);
 
   if (!el.length) return;
   const { datasetIndex, index } = el[0];
@@ -67,26 +73,12 @@ export default function MonthsChart({ data }: Props) {
     setYear,
     setScreen,
   } = useCalendarScreenContext();
-  const chartRef = useRef();
+  const chartRef = useRef<Chart<"bar">>(null);
 
-  // if (!year) {
-  //   let item = filterState.find((item) => {
-  //     return (
-  //       item.filter === "betweenDates" ||
-  //       item.filter === "onDate" ||
-  //       item.filter === "afterDate" ||
-  //       item.filter === "beforeDate"
-  //     );
-  //   });
-  //   if (!item?.arg) return dayjs().year();
+  const monthsData = getMonthsChartDataByYear(data);
 
-  //   let year = dayjs(item.arg[0]).year();
-  //   setYear(year);
-  // }
-  const monthsData = getMonthsChartDataByYear(data, year);
-
-  const handleClick = (e) => {
-    const month = getDataFromEvent(e, chartRef, monthsData);
+  const handleClick = (e: MouseEvent<HTMLCanvasElement>) => {
+    const month: string | undefined = getDataFromEvent(e, chartRef, monthsData);
     if (!month) return;
 
     setMonth(month);
@@ -97,11 +89,10 @@ export default function MonthsChart({ data }: Props) {
     );
     const order = dateFilterIndex !== -1 ? dateFilterIndex : filterState.length;
 
-    const endOfMonth = dayjs(`${year}-${monthNum[month]}-01`)
-      .endOf("month")
-      .date();
-    const startDate = `${year}-${monthNum[month]}-01`;
-    const endDate = `${year}-${monthNum[month]}-${endOfMonth}`;
+    const monthValue = monthNum[month as keyof typeof monthNum];
+    const endOfMonth = dayjs(`${year}-${monthValue}-01`).endOf("month").date();
+    const startDate = `${year}-${monthValue}-01`;
+    const endDate = `${year}-${monthValue}-${endOfMonth}`;
 
     dispatch({
       type: "upsert",
@@ -117,7 +108,7 @@ export default function MonthsChart({ data }: Props) {
     // setMonth(month)
   };
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: MouseEvent<HTMLCanvasElement>) => {
     if (!chartRef?.current) return;
     const label = getDataFromEvent(e, chartRef, monthsData);
 

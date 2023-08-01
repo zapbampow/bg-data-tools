@@ -1,5 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import type { Dispatch, SetStateAction, Event } from "react";
+import type {
+  Dispatch,
+  SetStateAction,
+  UIEvent,
+  RefObject,
+  MouseEvent,
+} from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,9 +14,10 @@ import {
   Title,
   Tooltip,
   Legend,
+  Chart,
 } from "chart.js";
 import { Bar, getElementAtEvent } from "react-chartjs-2";
-import type { DateGroup } from "../../types";
+import type { Data, DateGroup } from "../../types";
 import getYearChartData from "../../DatesCard/utils/getYearChartData";
 import type { Screen } from "../../types";
 import { usePlayFilterContext } from "~/contexts/playFilterContext";
@@ -43,7 +50,11 @@ const options = {
   },
 };
 
-const getDataFromEvent = (e: UIEvent, chartRef, data) => {
+const getDataFromEvent = (
+  e: MouseEvent<HTMLCanvasElement>,
+  chartRef: RefObject<ChartJS>,
+  data: Data
+) => {
   if (!chartRef?.current) return;
   const el = getElementAtEvent(chartRef.current, e);
 
@@ -62,12 +73,12 @@ type Props = {
 export default function YearChart({ data, setYear, setFilterOrder }: Props) {
   const { state: filterState, dispatch } = usePlayFilterContext();
   const { setScreen } = useCalendarScreenContext();
-  const chartRef = useRef();
+  const chartRef = useRef<Chart<"bar">>(null);
   const yearData = getYearChartData(data);
   // console.log("yearData", yearData);
 
-  const handleClick = (e: Event) => {
-    const year = getDataFromEvent(e, chartRef, yearData);
+  const handleClick = (e: MouseEvent<HTMLCanvasElement>) => {
+    const year: string | undefined = getDataFromEvent(e, chartRef, yearData);
     if (!year) return;
 
     const dateFilterIndex = filterState.findIndex(
@@ -80,7 +91,7 @@ export default function YearChart({ data, setYear, setFilterOrder }: Props) {
     const endDate = `${year}-12-31`;
 
     setScreen("months");
-    setYear(year);
+    setYear(parseInt(year));
 
     dispatch({
       type: "upsert",
@@ -93,7 +104,7 @@ export default function YearChart({ data, setYear, setFilterOrder }: Props) {
     });
   };
 
-  const handleMouseMove = (e: Event) => {
+  const handleMouseMove = (e: MouseEvent<HTMLCanvasElement>) => {
     if (!chartRef?.current) return;
     const label = getDataFromEvent(e, chartRef, yearData);
 

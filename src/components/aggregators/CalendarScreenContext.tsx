@@ -47,7 +47,7 @@ const CalendarScreenContext = React.createContext<
       dispatch: Dispatch;
       setScreen: (screen: Screen) => void;
       setYear: (year: number | null) => void;
-      setMonth: (month: number | null) => void;
+      setMonth: (month: number | string | null) => void;
       setDays: (days: number[]) => void;
       setFilterOrder: (filterOrder: number | null) => void;
     }
@@ -68,7 +68,7 @@ const CalendarScreenProvider = ({ children }: CalendarScreenProviderProps) => {
     dispatch({ type: "setYear", payload: year });
   };
 
-  const setMonth = (month: number | null) => {
+  const setMonth = (month: number | string | null) => {
     dispatch({ type: "setMonth", payload: month });
   };
 
