@@ -17,13 +17,21 @@ export default function MonthCalendar({ data }: Props) {
     setScreen,
   } = useCalendarScreenContext();
 
-  const dates = getPlayDatesFromMonthData({ data: data[0], year, month });
+  const dates = getPlayDatesFromMonthData({
+    data: data[0],
+    year,
+    month,
+  }) as string[];
+
+  if (!year || !month) return null;
 
   return (
     <div className="w-full">
       <Calendar
         className="dashboard_month_calendar"
-        value={new Date(year, parseInt(monthNum[month]) - 1)}
+        value={
+          new Date(year, parseInt(monthNum[month as keyof typeof monthNum]) - 1)
+        }
         tileClassName={({ date, view }) => {
           let dateStr = dayjs(date).format("YYYY-MM-DD");
           if (dates?.includes(dateStr)) {

@@ -1,10 +1,10 @@
 import React from "react";
-import type { Screen } from "../types";
+import type { Screen } from "~/components/aggregators/types";
 
 type State = {
   screen: Screen;
   year: number | null;
-  month: number | null;
+  month: number | string | null;
   days: number[];
   filterOrder: number | null;
 };

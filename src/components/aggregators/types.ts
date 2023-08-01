@@ -11,27 +11,26 @@ export type Data = {
 
 export type Screen = "year" | "months" | "month";
 
-export type DateGroup = {
-  year: string;
+interface Month {
+  monthNum: number;
+  month: string;
   count: number;
-  months: {
-    monthNum: number;
-    month: string;
-    count: number;
-    dates: string[];
-  }[];
-};
+  dates:
+    | string[]
+    | {
+        day: string;
+        count: number;
+      }[];
+}
 
-export type PlayCountDateGroup = {
+export interface DateGroup {
   year: string;
   count: number;
-  months: {
-    monthNum: number;
-    month: string;
-    count: number;
-    dates: {
-      day: string;
-      count: number;
-    }[];
-  }[];
-};
+  months: Month[];
+}
+
+export interface PlayCountDateGroup {
+  year: string;
+  count: number;
+  months: Month[];
+}

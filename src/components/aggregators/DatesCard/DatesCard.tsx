@@ -10,7 +10,6 @@ import MonthsChart from "../AggregatorMenu/CountCharts/MonthsChart";
 import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import MonthCalendar from "./MonthCalendar";
 import { useCalendarScreenContext } from "../CalendarScreenContext";
-import dayjs from "dayjs";
 import RemoveCardButton from "../RemoveCardButton.tsx";
 
 type Props = {
@@ -61,10 +60,6 @@ export default function DatesCard({ userId }: Props) {
     [filterState, setScreen, screen]
   );
 
-  const shortYear = (year) => {
-    return `'${year.toString().slice(2)}`;
-  };
-
   const title =
     screen === "year"
       ? "# Days Played"
@@ -87,9 +82,7 @@ export default function DatesCard({ userId }: Props) {
           setFilterOrder={setFilterOrder}
         />
       )}
-      {screen === "months" && (
-        <MonthsChart data={dateData} setMonth={setMonth} />
-      )}
+      {screen === "months" && <MonthsChart data={dateData} />}
       {screen === "month" && <MonthCalendar data={dateData} />}
     </Card>
   );

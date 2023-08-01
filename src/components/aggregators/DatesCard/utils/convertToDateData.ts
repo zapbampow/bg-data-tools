@@ -2,6 +2,8 @@ import dayjs from "dayjs";
 import type { DateGroup } from "../../types";
 import type { PlayDataModel } from "~/models/bgg/gameDataModels";
 
+const;
+
 const convertToDateData = (data: PlayDataModel[]) => {
   let dateData: DateGroup[] = data.reduce((acc: DateGroup[], cur) => {
     const date = dayjs(cur.date);
@@ -54,6 +56,7 @@ const convertToDateData = (data: PlayDataModel[]) => {
       // increase year count
       acc[curYearIndex].count += 1;
       // add date to month
+      // @ts-ignore
       acc[curYearIndex].months[curMonthIndex].dates.push(cur.date);
       // increase month count
       acc[curYearIndex].months[curMonthIndex].count += 1;
