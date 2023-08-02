@@ -29,7 +29,7 @@ export function Component() {
               <div className="mb-4">({user.username})</div>
               <div className="flex justify-between gap-4">
                 <Link
-                  to={`/bggstats/${user.username}`}
+                  to={`/${user.username}`}
                   className="px-4 py-2 font-semibold rounded-md bg-slate-200 hover:bg-slate-300 text-slate-800"
                 >
                   View
