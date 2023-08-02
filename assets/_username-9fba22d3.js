@@ -1,0 +1,1 @@
+import{r as e,j as n,Y as o}from"./index-a5bcf735.js";/* empty css                         */const m=async({params:r})=>{const{username:t}=r;return e(`/${t}/plays`)};function p(){return n.jsx(o,{})}export{p as Component,m as loader};

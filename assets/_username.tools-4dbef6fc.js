@@ -1,1 +1,0 @@
-import{r as o,j as e,Y as s}from"./index-4b2b178f.js";import{C as t}from"./Container-345fc937.js";const m=async({params:n})=>{const{username:r}=n;return console.log("username in $username",r),o(`/${r}/tools/first-plays`)};function u(){return e.jsx(t,{children:e.jsx(s,{})})}export{u as Component,m as loader};
