@@ -7,7 +7,7 @@ export function Component() {
 
   return (
     <div className="w-full lg:w-[764px] px-2 mx-auto">
-      <div className="p-8 mb-16 rounded-md markdown bg-slate-100">
+      <div className="p-8 mb-16 rounded-md bg-slate-100">
         <h1 className="text-[2.5rem] font-bold">Manage your data</h1>
         <p className={`${error ? "mb-4" : "mb-8"}`}>
           Here you can delete unused and unwanted data. <br />
