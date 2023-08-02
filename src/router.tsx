@@ -2,6 +2,7 @@ import {
   createRoutesFromElements,
   createBrowserRouter,
   Route,
+  createHashRouter,
 } from "react-router-dom";
 
 import Root from "~/routes/root.tsx";
@@ -22,7 +23,7 @@ import Root from "~/routes/root.tsx";
  * FINISH: you added aggregator context. And you added MINUS symbol to # Days Played card. Add that to the other cards
  */
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
       <Route index lazy={() => import("~/routes/index.tsx")} />
@@ -54,8 +55,8 @@ const router = createBrowserRouter(
       <Route path="/about" element={<About />} />
       <Route path="/how-to-use" element={<HowToUse />} /> */}
     </Route>
-  ),
-  { basename: import.meta.env.BASE_URL }
+  )
+  // { basename: import.meta.env.BASE_URL }
 );
 
 export default router;
