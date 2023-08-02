@@ -3,7 +3,7 @@ import Navbar from "../components/navbar/Navbar.tsx";
 
 export default function Root() {
   return (
-    <div className="bgg-gradient relative min-h-screen">
+    <div className="relative min-h-screen bgg-gradient">
       <Navbar />
       <Outlet />
     </div>

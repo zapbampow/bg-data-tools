@@ -25,7 +25,7 @@ import Root from "~/routes/root.tsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
-      <Route path="/" lazy={() => import("~/routes/index.tsx")} />
+      <Route index lazy={() => import("~/routes/index.tsx")} />
       <Route
         path="/:username/plays"
         lazy={() => import("~/routes/$username.plays.tsx")}
@@ -57,7 +57,8 @@ const router = createBrowserRouter(
       <Route path="/about" element={<About />} />
       <Route path="/how-to-use" element={<HowToUse />} /> */}
     </Route>
-  )
+  ),
+  { basename: import.meta.env.BASE_URL }
 );
 
 export default router;
