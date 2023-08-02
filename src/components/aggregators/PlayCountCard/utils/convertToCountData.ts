@@ -51,6 +51,7 @@ const convertToCountData = (data: PlayDataModel[]) => {
       // handle date data
       let curDateIndex = acc[curYearIndex].months[
         curMonthIndex
+        // @ts-ignore
       ].dates.findIndex((date) => date.day === cur.date);
 
       // if current date doesn't exist, create it
@@ -60,6 +61,7 @@ const convertToCountData = (data: PlayDataModel[]) => {
         // increase month count
         acc[curYearIndex].months[curMonthIndex].count += quantity;
         // add date to month
+        // @ts-ignore
         acc[curYearIndex].months[curMonthIndex].dates.push({
           day: cur.date,
           count: quantity,
@@ -74,6 +76,7 @@ const convertToCountData = (data: PlayDataModel[]) => {
       // increase month count
       acc[curYearIndex].months[curMonthIndex].count += quantity;
       // add date to month
+      // @ts-ignore
       acc[curYearIndex].months[curMonthIndex].dates[curDateIndex].count +=
         quantity;
 

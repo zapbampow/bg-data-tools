@@ -19,17 +19,20 @@ export default function MonthCalendar({ data }: Props) {
     state: { year, month },
     setMonth,
   } = useCalendarScreenContext();
-  const dates = getPlayDatesFromMonthData({ data: data[0], year, month });
-  // console.log("data", data);
-  const value = new Date(year, parseInt(monthNum[month]) - 1);
+  const dates = getPlayDatesFromMonthData({ data: data[0], year, month }) as {
+    day: string;
+    count: number;
+  }[];
 
-  if (!year && !month) return null;
+  if (!year) return null;
 
   return (
     <div className="w-full">
       <Calendar
         className="dashboard_month_calendar"
-        value={new Date(year, parseInt(monthNum[month]) - 1)}
+        value={
+          new Date(year, parseInt(monthNum[month as keyof typeof monthNum]) - 1)
+        }
         tileClassName={({ date, view }) => {
           let dateStr = dayjs(date).format("YYYY-MM-DD");
           if (dates?.some((d) => d.day === dateStr)) {

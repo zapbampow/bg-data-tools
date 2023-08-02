@@ -4,7 +4,7 @@ import { PlayDataModel } from "~/models/bgg/gameDataModels";
 
 export function getAllGames(
   filteredPlays: PlayDataModel[],
-  recordingUserId: number
+  recordingUserId?: number
 ) {
   if (!recordingUserId) return [];
 
@@ -91,7 +91,7 @@ export const getAllLocations = (
       const location = {
         value: play.location?.replace(/\s+/g, ""),
         label: play.location,
-      };
+      } as SelectionType;
       play?.location && locations.push(location);
     });
 

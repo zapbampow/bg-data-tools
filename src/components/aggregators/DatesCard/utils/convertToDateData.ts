@@ -2,8 +2,6 @@ import dayjs from "dayjs";
 import type { DateGroup } from "../../types";
 import type { PlayDataModel } from "~/models/bgg/gameDataModels";
 
-const;
-
 const convertToDateData = (data: PlayDataModel[]) => {
   let dateData: DateGroup[] = data.reduce((acc: DateGroup[], cur) => {
     const date = dayjs(cur.date);

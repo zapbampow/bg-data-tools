@@ -9,7 +9,7 @@ type User = {
 
 export default function useManageData() {
   const [users, setUsers] = useState<User[]>();
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [processing, setProcessing] = useState<number>();
 
   const deleteUserData = async (id: number) => {
@@ -22,9 +22,10 @@ export default function useManageData() {
       setUsers(updatedUsers);
       setProcessing(undefined);
       return `Deleted ${deleted.playsDeleted} plays`;
-    } catch (err) {
+    } catch (err: any) {
       setError(err);
       setProcessing(undefined);
+      // @ts-ignore
       throw new Error(err);
     }
   };

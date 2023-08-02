@@ -6,7 +6,7 @@ import type { Table as TableType } from "@tanstack/table-core";
 import type { FirstRecordRow } from "~/utils/conversion/getFirstPlayDateFromPlays";
 
 type Props = {
-  table: TableType<PlayDataModel | FirstRecordRow>;
+  table: TableType<PlayDataModel>;
 };
 export default function RecordCards({ table }: Props) {
   return (
@@ -29,7 +29,7 @@ function Card({ data }: { data: PlayDataModel }) {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <div className="grid gap-6 rounded border bg-white p-2">
+      <div className="grid gap-6 p-2 bg-white border rounded">
         <div className="grid">
           <div className="text-2xl font-semibold">{data.gameName}</div>
           {data.players.length > 0 && (

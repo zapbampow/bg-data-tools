@@ -1,5 +1,5 @@
 import type { FilterType } from "~/services/queryService/types";
-import { ComboBoxFilter, SingleSelectFilter } from "~/components/filters";
+import { ComboBoxFilter } from "~/components/filters";
 import ComboBoxFilterMultiple from "./filters/ComboBoxFilterMultiple";
 import Datepicker, { MultiDatePicker, ForAllTime } from "./datepicker";
 
@@ -50,6 +50,6 @@ export default function FilterToComponent({ filter }: Props) {
 
     default:
       console.log("hitting default");
-      return <SingleSelectFilter key={filter.order} filter={filter} />;
+      return null;
   }
 }

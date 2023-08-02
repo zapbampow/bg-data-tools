@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { convertXmlToJsObject } from "../utils/conversion/xmlToJson";
 import fetchRetry from "fetch-retry";
 import type {

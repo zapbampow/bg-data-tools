@@ -18,17 +18,17 @@ export default function Answer({ answer, aggregator }: Props) {
     return (
       <Container>
         {/* <PlayFilters /> */}
-        <RecordedPlays data={answer} />
+        <RecordedPlays />
       </Container>
     );
   }
 
   // List of other data
-  const orderedProps = answer.sort();
+  const orderedProps = answer.sort() as string[];
 
   return (
     <Container>
-      <ul className="border p-4 w-max mx-auto">
+      <ul className="p-4 mx-auto border w-max">
         {orderedProps.map((value: string) => {
           return <li key={value}>{value}</li>;
         })}

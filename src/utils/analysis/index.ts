@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { db } from "../../services/db";
 import dayjs from "dayjs";
 

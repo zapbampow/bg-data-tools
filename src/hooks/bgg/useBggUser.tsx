@@ -24,6 +24,12 @@ export function useBggUser() {
       setUser(dbUserInfo);
     } else {
       const userInfo = await getUserInfo(username);
+      if (!userInfo) {
+        setError(
+          "There was an error getting user info from BGG. Please try again later."
+        );
+        return;
+      }
 
       let isARealUser = isValidUser(userInfo);
 

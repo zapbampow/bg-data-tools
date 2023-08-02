@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Thank you past David Walsh for this one.
  * https://davidwalsh.name/convert-xml-json

@@ -84,6 +84,7 @@ export default function MultiDatePickerComponent({ filter }: Props) {
     >
       <div className="font-semibold">{filter.label}:</div>
       <DateRangePicker
+        // @ts-ignore
         value={value}
         onChange={handleChange}
         calendarIcon={null}

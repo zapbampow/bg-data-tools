@@ -1,4 +1,4 @@
-import type { Table } from "@tanstack/react-table";
+import type { Table as TableType } from "@tanstack/react-table";
 import type { PlayDataModel } from "~/models/bgg/gameDataModels";
 import type { FirstRecordRow } from "~/utils/conversion/getFirstPlayDateFromPlays";
 import {
@@ -9,7 +9,7 @@ import {
 } from "../icons";
 
 type Props = {
-  table: Table<PlayDataModel | FirstRecordRow>;
+  table: TableType<PlayDataModel> | TableType<FirstRecordRow>;
 };
 
 export default function PaginationRow({ table }: Props) {
@@ -19,7 +19,7 @@ export default function PaginationRow({ table }: Props) {
   if (pageCount <= 1) return null;
 
   return (
-    <div className="flex items-center justify-between gap-2 rounded bg-white sm:rounded-tl-none sm:rounded-tr-none ">
+    <div className="flex items-center justify-between gap-2 bg-white rounded sm:rounded-tl-none sm:rounded-tr-none ">
       {/* Previous page buttons */}
       <div>
         <button
@@ -39,7 +39,7 @@ export default function PaginationRow({ table }: Props) {
       </div>
 
       {/* Pagination settings */}
-      <div className="flex flex-auto items-center justify-center gap-8 py-4">
+      <div className="flex items-center justify-center flex-auto gap-8 py-4">
         <span className="flex flex-col items-center gap-1 xs:flex-row">
           <span className="hidden sm:inline">Go to page:</span>
           <input
@@ -51,7 +51,7 @@ export default function PaginationRow({ table }: Props) {
               const page = e.target.value ? Number(e.target.value) - 1 : 0;
               table.setPageIndex(page);
             }}
-            className="w-16 rounded border px-1 text-center sm:text-left"
+            className="w-16 px-1 text-center border rounded sm:text-left"
           />
           <span>of {pageCount}</span>
         </span>
@@ -60,7 +60,7 @@ export default function PaginationRow({ table }: Props) {
           onChange={(e) => {
             table.setPageSize(Number(e.target.value));
           }}
-          className="rounded border"
+          className="border rounded"
         >
           {[10, 25, 50, 100].map((pageSize) => (
             <option key={pageSize} value={pageSize}>

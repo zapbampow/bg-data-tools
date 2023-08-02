@@ -43,7 +43,7 @@ export default function ComboBoxFilter({ filter }: Props) {
   const isMobile = useIsMobile();
 
   const [options, setOptions] = useState<SelectionType[]>([]);
-  const [selection, setSelection] = useState<SelectionType>({});
+  const [selection, setSelection] = useState<SelectionType | {}>({});
   const [query, setQuery] = useState("");
   const [selectionText, setSelectionText] = useState("");
 
@@ -97,13 +97,13 @@ export default function ComboBoxFilter({ filter }: Props) {
   };
 
   const setInitialSelection = useCallback(
-    (options: SelectionType[], filter) => {
+    (options: SelectionType[], filter: FilterType) => {
       if (!filter.arg || !options.length) return;
 
       let selectionObject = options.find(
         (option) => option.label === filter.arg
       );
-      setSelection(selectionObject);
+      setSelection(selectionObject || {});
       setSelectionText(getSelectionText(selectionObject));
     },
     []
@@ -166,7 +166,7 @@ export default function ComboBoxFilter({ filter }: Props) {
 
       <div
         ref={filterBtnRef}
-        className="flex w-full items-center justify-between gap-4 overflow-hidden whitespace-nowrap text-left font-semibold transition-all sm:max-w-sm"
+        className="flex items-center justify-between w-full gap-4 overflow-hidden font-semibold text-left transition-all whitespace-nowrap sm:max-w-sm"
         onClick={clickButton}
       >
         <span>

@@ -12,20 +12,6 @@ import {
 import type { LoaderFunction } from "react-router-dom";
 import datePickerStyles from "~/styles/bggStats/datePickerStyles.css";
 import dayjs from "dayjs";
-// import { addUsageData } from "~/services/prismaService/bggStats";
-
-// export const loader: LoaderFunction = ({ params }) => {
-//   let username = params.username;
-//   invariant(username, "Expects a username");
-
-//   console.log(username);
-
-//   if (username) {
-//     addUsageData({ username: username as string, page: "first-plays" });
-//   }
-
-//   return username;
-// };
 
 type State = {
   selectedGameName: string;
@@ -124,7 +110,7 @@ export function Component() {
 
       <div className="flex flex-wrap gap-4 mt-8 mb-4">
         <FirstPlayGameNameFilter
-          plays={plays.sort((a, b) => {
+          plays={plays.sort((a: any, b: any) => {
             return a.gameName.localeCompare(b.gameName);
           })}
           selection={selectedGameName}

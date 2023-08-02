@@ -14,27 +14,28 @@ import { Container } from "../pages/layout";
 import PaginationRow from "./PaginationRow";
 import type { Table as TableType } from "@tanstack/table-core";
 import type { FirstRecordRow } from "~/utils/conversion/getFirstPlayDateFromPlays";
+import { Table } from "dexie";
 
 const cellStyle = "py-2 px-4";
 
 type Props = {
-  table: TableType<PlayDataModel | FirstRecordRow>;
+  table: TableType<PlayDataModel> | TableType<FirstRecordRow>;
 };
 export default function TableWithPagination({ table }: Props) {
   return (
     <>
       <table
-        className="w-full border-separate rounded-tl-md rounded-tr-md border bg-white"
+        className="w-full bg-white border border-separate rounded-tl-md rounded-tr-md"
         style={{ borderSpacing: 0 }}
       >
-        <thead className="w-full border-spacing-2 border-b">
+        <thead className="w-full border-b border-spacing-2">
           {
             // Loop over the header rows
             table.getHeaderGroups().map((headerGroup) => (
               // Apply the header row props
               <tr
                 key={headerGroup.id}
-                className="w-full rounded text-left"
+                className="w-full text-left rounded"
                 style={{ borderSpacing: "1 !important" }}
               >
                 {
@@ -51,6 +52,7 @@ export default function TableWithPagination({ table }: Props) {
                         header.isPlaceholder
                           ? null
                           : flexRender(
+                              // @ts-ignore
                               header.column.columnDef.header,
                               header.getContext()
                             )

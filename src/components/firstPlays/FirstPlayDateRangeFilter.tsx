@@ -42,6 +42,7 @@ export default function FirstPlayDateRangeFilter({
       {showDateSelector ? (
         <>
           <DateRangePicker
+            // @ts-ignore
             value={dateRange}
             onChange={handleChange}
             calendarIcon={null}

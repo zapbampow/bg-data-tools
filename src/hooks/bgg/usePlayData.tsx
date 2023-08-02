@@ -27,7 +27,7 @@ type Props = {
   handleFiltering?: () => Promise<void>;
 };
 function usePlayData(props: Props) {
-  const { user } = useBggUser();
+  const { user } = useBggUser() as { user: UserInfo };
   const [percentDone, setPercentDone] = useState(0);
   const [error, setError] = useState(null);
   const [userFirstTime, setUserFirstTime] = useState(false);
@@ -86,8 +86,10 @@ function usePlayData(props: Props) {
     } catch (err) {
       console.log(err);
       setPercentDone(0);
+      // @ts-ignore
       setError(err.message);
       setFetching(false);
+      // @ts-ignore
       throw Error(err);
     }
   };

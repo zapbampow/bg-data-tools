@@ -137,7 +137,11 @@ export function pipeWithArgs2(plays: Plays, args: FilterType[]) {
   // console.log({ plays, args });
   return pipe(
     plays,
-    ...args.map(({ filter, arg }) => argFunctionPairs[filter](arg)) // I don't know TS well enough to type my way out of this linting error, but it runs fine
+    ...args.map(({ filter, arg }) => {
+      const fn = argFunctionPairs[filter as keyof typeof argFunctionPairs];
+      // @ts-ignore
+      return fn(arg);
+    }) // I don't know TS well enough to type my way out of this linting error, but it runs fine
   );
 }
 

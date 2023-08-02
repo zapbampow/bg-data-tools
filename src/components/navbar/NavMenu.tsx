@@ -99,7 +99,7 @@ export default function NavMenu() {
         <h3 className={h3Styles}>Resources</h3>
         {resourceLinks?.map((link) => (
           <Menu.Item key={link.href} as={Fragment}>
-            {link.external ? (
+            {/* {link.external ? (
               <a
                 href={link.href}
                 target="_blank"
@@ -110,13 +110,13 @@ export default function NavMenu() {
                   {link.icon} {link.label}
                 </div>
               </a>
-            ) : (
-              <Link to={link.href}>
-                <div className="flex items-center gap-2">
-                  {link.icon} {link.label}
-                </div>
-              </Link>
-            )}
+            ) : ( */}
+            <Link to={link.href}>
+              <div className="flex items-center gap-2">
+                {link.icon} {link.label}
+              </div>
+            </Link>
+            {/* )} */}
           </Menu.Item>
         ))}
       </Menu.Items>

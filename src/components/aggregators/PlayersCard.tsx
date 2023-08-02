@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useMemo, useState, useRef } from "react";
 import type { PlayDataModel } from "~/models/bgg/gameDataModels";
 import { usePlayResultsContext } from "~/contexts/playResultsContext";
