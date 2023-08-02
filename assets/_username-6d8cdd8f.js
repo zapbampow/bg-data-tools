@@ -1,1 +1,0 @@
-import{r as e,j as n,$ as o}from"./index-ffad2f68.js";/* empty css                         */const m=async({params:r})=>{const{username:t}=r;return e(`/${t}/plays`)};function p(){return n.jsx(o,{})}export{p as Component,m as loader};
