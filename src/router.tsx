@@ -26,26 +26,23 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
       <Route index lazy={() => import("~/routes/index.tsx")} />
+      <Route path="settings" lazy={() => import("~/routes/settings.tsx")} />
+      <Route path="feedback" lazy={() => import("~/routes/feedback.tsx")} />
+      <Route path="about" lazy={() => import("~/routes/about.tsx")} />
+      <Route path="how-to-use" lazy={() => import("~/routes/how-to-use.tsx")} />
       <Route
-        path="/:username/plays"
+        path=":username/plays"
         lazy={() => import("~/routes/$username.plays.tsx")}
       />
       <Route
-        path="/:username/tools/first-plays"
+        path=":username/tools/first-plays"
         lazy={() => import("~/routes/$username.tools.first-plays.tsx")}
       />
       <Route
-        path="/:username/tools"
+        path=":username/tools"
         lazy={() => import("~/routes/$username.tools.tsx")}
       />
-      <Route path="/:username" lazy={() => import("~/routes/$username.tsx")} />
-      <Route path="/settings" lazy={() => import("~/routes/settings.tsx")} />
-      <Route path="/feedback" lazy={() => import("~/routes/feedback.tsx")} />
-      <Route path="/about" lazy={() => import("~/routes/about.tsx")} />
-      <Route
-        path="/how-to-use"
-        lazy={() => import("~/routes/how-to-use.tsx")}
-      />
+      <Route path=":username" lazy={() => import("~/routes/$username.tsx")} />
 
       {/* <Route path="/" element={<BGGStatsHome />} action={homeAction} /> */}
       {/* <Route path="/:username/plays" element={<PlayDashboard />} /> */}
