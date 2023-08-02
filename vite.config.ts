@@ -8,5 +8,5 @@ export default defineConfig({
   resolve: {
     alias: [{ find: "~", replacement: path.resolve(__dirname, "src") }],
   },
-  base: "/bg-data-tools/",
+  // base: "/bg-data-tools/",
 });
