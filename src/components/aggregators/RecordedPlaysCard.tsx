@@ -1,18 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { usePlayResultsContext } from "~/contexts/playResultsContext";
-import type { PlayDataModel } from "~/models/bgg/gameDataModels";
-import {
-  getRecentPlays,
-  getInitialPlayData,
-} from "~/services/queryService/queryService";
-import { Card, CardSummary, CardTitle } from "./Card";
+import { Card, CardTitle } from "./Card";
 import RemoveCardButton from "./RemoveCardButton.tsx";
 
-type Props = {
-  userId: number;
-};
-
-export default function RecordedPlaysCard({ userId }: Props) {
+export default function RecordedPlaysCard() {
   const { state } = usePlayResultsContext();
   const [count, setCount] = useState(0);
 

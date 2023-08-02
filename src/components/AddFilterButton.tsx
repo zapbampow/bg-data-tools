@@ -6,7 +6,6 @@ import {
   baseStyles,
   openButtonStyles,
   openMenuStyles,
-  hoverStyles,
   comboActiveItem,
   baseSelectItem,
 } from "./styles";
@@ -38,7 +37,7 @@ type Props = {
 };
 
 export default function AddFilterButton({ addFilterButton, display }: Props) {
-  const { state, dispatch } = usePlayFilterContext();
+  const { state } = usePlayFilterContext();
 
   const [selectedValue, setSelectedValue] = useState<SelectionType>({
     label: "",

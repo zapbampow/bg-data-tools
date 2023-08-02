@@ -1,9 +1,5 @@
 import { Menu } from "@headlessui/react";
-import {
-  baseStyles,
-  comboContainerStyles,
-  openComboboxMenuStyles,
-} from "../styles";
+import { baseStyles, openComboboxMenuStyles } from "../styles";
 
 import type { FilterType } from "~/services/queryService/types";
 import { RemoveFilter } from "~/components/filters";

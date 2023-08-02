@@ -7,7 +7,7 @@ type Props = {
 export default function index({ userId }: Props) {
   return (
     <DatesCardProvider>
-      <DatesCard userId={userId} />
+      <DatesCard />
     </DatesCardProvider>
   );
 }

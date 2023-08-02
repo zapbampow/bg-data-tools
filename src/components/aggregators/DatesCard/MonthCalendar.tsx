@@ -1,4 +1,3 @@
-import React from "react";
 import type { DateGroup } from "../types";
 import getPlayDatesFromMonthData from "./utils/getPlayDatesFromMonthData";
 import Calendar from "react-calendar/dist/cjs";
@@ -13,8 +12,6 @@ type Props = {
 export default function MonthCalendar({ data }: Props) {
   const {
     state: { year, month },
-    setMonth,
-    setScreen,
   } = useCalendarScreenContext();
 
   const dates = getPlayDatesFromMonthData({

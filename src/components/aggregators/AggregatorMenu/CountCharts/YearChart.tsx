@@ -1,11 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import type {
-  Dispatch,
-  SetStateAction,
-  UIEvent,
-  RefObject,
-  MouseEvent,
-} from "react";
+import { useRef } from "react";
+import type { RefObject, MouseEvent } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -19,7 +13,6 @@ import {
 import { Bar, getElementAtEvent } from "react-chartjs-2";
 import type { Data, DateGroup } from "../../types";
 import getYearChartData from "../../DatesCard/utils/getYearChartData";
-import type { Screen } from "../../types";
 import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import { useCalendarScreenContext } from "../../CalendarScreenContext";
 
@@ -59,7 +52,7 @@ const getDataFromEvent = (
   const el = getElementAtEvent(chartRef.current, e);
 
   if (!el.length) return;
-  const { datasetIndex, index } = el[0];
+  const { index } = el[0];
   const dataFromEvent = data?.labels[index];
 
   return dataFromEvent;

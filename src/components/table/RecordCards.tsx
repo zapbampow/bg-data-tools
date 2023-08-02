@@ -1,9 +1,8 @@
 import type { PlayDataModel } from "~/models/bgg/gameDataModels.js";
-import { TrophyFilled, ExternalLink } from "../icons";
+import { TrophyFilled } from "../icons";
 import dayjs from "dayjs";
 import PaginationRow from "./PaginationRow.js";
 import type { Table as TableType } from "@tanstack/table-core";
-import type { FirstRecordRow } from "~/utils/conversion/getFirstPlayDateFromPlays";
 
 type Props = {
   table: TableType<PlayDataModel>;
@@ -51,7 +50,12 @@ function Card({ data }: { data: PlayDataModel }) {
 const Names = ({ players }: { players: PlayDataModel["players"] }) => {
   let names = players.map((pdata, i, arr) => {
     let length = arr.length;
-    let { userId, name, win, new: firstPlay } = pdata;
+    let {
+      userId,
+      name,
+      win,
+      // new: firstPlay
+    } = pdata;
     return (
       <span className="inline-flex items-center" key={`${name}${userId}`}>
         {win ? (
@@ -66,10 +70,4 @@ const Names = ({ players }: { players: PlayDataModel["players"] }) => {
     );
   });
   return <>{names}</>;
-};
-
-type Row = {
-  id: string;
-  index: number;
-  original: PlayDataModel;
 };

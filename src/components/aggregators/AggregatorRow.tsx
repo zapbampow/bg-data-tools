@@ -1,10 +1,8 @@
-import React from "react";
 import { Container } from "../pages/layout";
 import LocationsCard from "./LocationsCard";
 import PlayersCard from "./PlayersCard";
 import RecordedPlaysCard from "./RecordedPlaysCard";
 import DatesCard from "./DatesCard";
-import { useLocalStorage } from "~/hooks/useLocalStorage";
 import AggregatorMenu from "./AggregatorMenu/AggregatorMenu";
 import PlayCountCard from "./PlayCountCard";
 import { CalendarScreenProvider } from "./CalendarScreenContext";
@@ -43,7 +41,7 @@ const getAggregators = (settings: string[], userId: number) => {
       case "locations":
         return <LocationsCard key={setting} />;
       case "recordedPlays":
-        return <RecordedPlaysCard key={setting} userId={userId} />;
+        return <RecordedPlaysCard key={setting} />;
       case "playCount":
         return <PlayCountCard key={setting} userId={userId} />;
       default:

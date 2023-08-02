@@ -1,16 +1,13 @@
-import React from "react";
 import { usePlayResultsContext } from "~/contexts/playResultsContext";
 import { Container } from "../pages/layout";
 import {
   createColumnHelper,
-  flexRender,
   getCoreRowModel,
   useReactTable,
   getPaginationRowModel,
   sortingFns,
   getSortedRowModel,
 } from "@tanstack/react-table";
-import type { ColumnHelper } from "@tanstack/react-table";
 import { ExternalLink } from "../icons";
 
 import TableWithPagination from "../table/TableWithPagination";
@@ -75,7 +72,12 @@ export default function RecordedPlays() {
 
         let names = data.getValue().map((pdata, i, arr) => {
           let length = arr.length;
-          let { userId, name, win, new: firstPlay } = pdata;
+          let {
+            userId,
+            name,
+            win,
+            // new: firstPlay
+          } = pdata;
           return (
             <span className="inline-flex items-center" key={`${name}${userId}`}>
               {win ? (

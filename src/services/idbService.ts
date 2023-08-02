@@ -1,5 +1,5 @@
 import { db, StoreName } from "./db";
-import { Table, IndexableType, Collection } from "dexie";
+import { Collection } from "dexie";
 
 export const getLatestPlayData = async (userId: number) => {
   const latestPlay = await db.plays
@@ -118,14 +118,3 @@ export const store = (storeName: StoreName, userId: number) =>
   new IDBCollection(storeName, userId);
 
 type OperatorType = "equals" | "isAbove" | "equalsOrAbove";
-
-function handleOperator(operator: OperatorType) {
-  switch (operator) {
-    case "equals":
-      return "===";
-    case "isAbove":
-      return ">";
-    case "equalsOrAbove":
-      return ">=";
-  }
-}

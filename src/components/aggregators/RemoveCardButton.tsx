@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Times from "../icons/Times";
 import { useAggregatorContext } from "./AggregatorContext.tsx";
 

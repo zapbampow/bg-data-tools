@@ -1,4 +1,3 @@
-import type { PlayDataModel } from "~/models/bgg/gameDataModels";
 import { db } from "~/services/db";
 
 export type RowData = {

@@ -1,13 +1,6 @@
 import dayjs from "dayjs";
 import { Popover } from "@headlessui/react";
-import {
-  useFloating,
-  offset,
-  flip,
-  shift,
-  autoUpdate,
-  arrow,
-} from "@floating-ui/react";
+import { useFloating, offset, flip, shift, arrow } from "@floating-ui/react";
 import { useRef } from "react";
 
 type Props = {

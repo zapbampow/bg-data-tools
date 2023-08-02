@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, Fragment } from "react";
 import type { FirstRecordRow } from "~/utils/conversion/getFirstPlayDateFromPlays";
 import {
   comboContainerStyles,
@@ -103,7 +103,7 @@ export default function FirstPlayGameNameFilter({
                     value={query}
                     autoFocus
                     placeholder="search"
-                    className={`flex-1 px-2 bg-transparent font-semibold transition transition-all ease-in-out duration-500 ${hoverStyles} focus:outline-0`}
+                    className={`flex-1 px-2 bg-transparent font-semibold transition-all ease-in-out duration-500 ${hoverStyles} focus:outline-0`}
                   />
                   <Search className="cursor-default text-slate-500" />
                   <Combobox.Button

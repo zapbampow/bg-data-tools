@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardTitle } from "../Card";
 import { usePlayResultsContext } from "~/contexts/playResultsContext";
 import BackButton from "./BackButton";
@@ -12,19 +12,13 @@ import MonthCalendar from "./MonthCalendar";
 import { useCalendarScreenContext } from "../CalendarScreenContext";
 import RemoveCardButton from "../RemoveCardButton.tsx";
 
-type Props = {
-  userId: number;
-};
-
-export default function DatesCard({ userId }: Props) {
-  const needToUpdate = useRef(true);
+export default function DatesCard() {
   const { state } = usePlayResultsContext();
-  const { state: filterState, dispatch } = usePlayFilterContext();
+  const { state: filterState } = usePlayFilterContext();
 
   const {
     state: dateCardState,
     setYear,
-    setMonth,
     setFilterOrder,
     setScreen,
   } = useCalendarScreenContext();

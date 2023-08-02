@@ -1,4 +1,3 @@
-import React from "react";
 import { AggregatorProvider } from "./AggregatorContext";
 import AggregatorRow from "./AggregatorRow.tsx";
 

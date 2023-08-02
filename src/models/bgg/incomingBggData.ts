@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Maps the json generated from the bgg xml
 
 // Commented out sections of this exampleData are things i don't care about for my app

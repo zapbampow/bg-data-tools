@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
-import DatePicker from "react-date-picker";
 import DateRangePicker from "@wojtekmaj/react-daterange-picker";
 import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import { ChevronLeft, ChevronRight, Trash } from "../icons";
@@ -13,7 +12,7 @@ interface Props {
   filter: FilterType;
 }
 export default function MultiDatePickerComponent({ filter }: Props) {
-  const { state, dispatch } = usePlayFilterContext();
+  const { dispatch } = usePlayFilterContext();
   const [isOpen, setIsOpen] = useState(false);
 
   const getInitialValues = (dates: string[]) => {

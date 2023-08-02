@@ -1,4 +1,3 @@
-import React from "react";
 import { TrophyFilled } from "../icons";
 
 export default function IconLegend() {

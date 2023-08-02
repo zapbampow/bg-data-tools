@@ -7,11 +7,7 @@ type Props = {
 };
 
 export default function RemoveFilter({ filter }: Props) {
-  const { state, dispatch } = usePlayFilterContext();
-
-  //   useEffect(() => {
-  //     console.log("filter", filter);
-  //   }, [filter]);
+  const { dispatch } = usePlayFilterContext();
 
   const removeFilter = (filter: FilterType) => {
     dispatch({

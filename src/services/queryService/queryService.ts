@@ -72,26 +72,26 @@ export const getRecentPlays = async (userId: number, amount: number) => {
  * RUNS PIPE ON IndexDB DATA USING ARGS LIKE WE I WANT TO USE THEM IN BGGSTATS
  */
 
-type FilterName =
-  | "count"
-  | "listGameNames"
-  | "listLocations"
-  | "listPlayerNames"
-  | "listDate"
-  | "listPlayData"
-  | "gameName"
-  | "location"
-  | "withPlayerName"
-  | "withOnlyPlayerNames"
-  | "withAllPlayerNames"
-  | "withAnyPlayerNames"
-  | "whereSinglePlayerNameWon"
-  | "newForPlayerName"
-  | "wherePlayerNamesWon"
-  | "onDate"
-  | "beforeDate"
-  | "afterDate"
-  | "betweenDates";
+// type FilterName =
+//   | "count"
+//   | "listGameNames"
+//   | "listLocations"
+//   | "listPlayerNames"
+//   | "listDate"
+//   | "listPlayData"
+//   | "gameName"
+//   | "location"
+//   | "withPlayerName"
+//   | "withOnlyPlayerNames"
+//   | "withAllPlayerNames"
+//   | "withAnyPlayerNames"
+//   | "whereSinglePlayerNameWon"
+//   | "newForPlayerName"
+//   | "wherePlayerNamesWon"
+//   | "onDate"
+//   | "beforeDate"
+//   | "afterDate"
+//   | "betweenDates";
 
 // export type FilterType = {
 //   order: number | "aggregator";

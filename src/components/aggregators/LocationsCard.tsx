@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import type { MouseEvent } from "react";
 import type { PlayDataModel } from "~/models/bgg/gameDataModels";
 import { usePlayResultsContext } from "~/contexts/playResultsContext";
@@ -8,10 +8,8 @@ import {
   Tooltip,
   Legend,
   Filler,
-  defaults,
 } from "chart.js";
-import { Pie, getDatasetAtEvent, getElementAtEvent } from "react-chartjs-2";
-import type { InteractionItem } from "chart.js";
+import { Pie, getElementAtEvent } from "react-chartjs-2";
 import { Card, CardTitle, CardSummary } from "./Card";
 import { ChartColors } from "./ChartColors";
 import { usePlayFilterContext } from "~/contexts/playFilterContext";
@@ -76,21 +74,13 @@ export default function LocationsCard() {
     setData(reducedData);
   }, [state]);
 
-  const printDatasetAtEvent = (dataset: InteractionItem[]) => {
-    if (!dataset.length) return;
-
-    const datasetIndex = dataset[0].datasetIndex;
-
-    console.log(data?.datasets[datasetIndex].label);
-  };
-
   const getDataFromEvent = (e: MouseEvent<HTMLCanvasElement>) => {
     if (!chartRef?.current) return;
     const el = getElementAtEvent(chartRef.current, e);
 
     if (!el.length) return;
 
-    const { datasetIndex, index } = el[0];
+    const { index } = el[0];
     const dataFromEvent = data?.labels[index];
 
     return dataFromEvent;

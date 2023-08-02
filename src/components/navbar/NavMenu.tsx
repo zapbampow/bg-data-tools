@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Menu } from "@headlessui/react";
 import {
-  GithubIcon,
+  // GithubIcon,
   Info,
   Meeple,
   Menu as MenuIcon,

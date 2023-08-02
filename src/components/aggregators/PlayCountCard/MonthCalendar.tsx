@@ -1,11 +1,8 @@
-import React from "react";
 import type { DateGroup } from "../types";
 import getPlayDatesFromMonthData from "../DatesCard/utils/getPlayDatesFromMonthData";
 import Calendar from "react-calendar/dist/cjs";
 import dayjs from "dayjs";
-import { usePlayCountCardContext } from "./PlayCountCardContext";
 import monthNum from "../DatesCard/utils/monthNum";
-import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import { useCalendarScreenContext } from "../CalendarScreenContext";
 import DayInfo from "./DayInfo";
 
@@ -14,10 +11,8 @@ type Props = {
 };
 
 export default function MonthCalendar({ data }: Props) {
-  const { state: filterState } = usePlayFilterContext();
   const {
     state: { year, month },
-    setMonth,
   } = useCalendarScreenContext();
   const dates = getPlayDatesFromMonthData({ data: data[0], year, month }) as {
     day: string;

@@ -5,7 +5,6 @@ import RecordedPlays from "../answers/RecordedPlays";
 import useFilteredData from "~/contexts/useFilteredData";
 import Aggregators from "../aggregators";
 import DownloadProgress from "../DownloadProgress";
-import { useEffect } from "react";
 import UsernameForm from "../forms/UsernameForm";
 import { Container } from "./layout";
 import { ExclamationCircle } from "../icons";

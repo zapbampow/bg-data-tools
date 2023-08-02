@@ -1,20 +1,8 @@
-import React from "react";
 import type { PlayDataModel } from "~/models/bgg/gameDataModels";
-import {
-  createColumnHelper,
-  flexRender,
-  getCoreRowModel,
-  useReactTable,
-  getPaginationRowModel,
-  sortingFns,
-  getSortedRowModel,
-} from "@tanstack/react-table";
-import { ExternalLink } from "../icons";
-import { Container } from "../pages/layout";
+import { flexRender } from "@tanstack/react-table";
 import PaginationRow from "./PaginationRow";
 import type { Table as TableType } from "@tanstack/table-core";
 import type { FirstRecordRow } from "~/utils/conversion/getFirstPlayDateFromPlays";
-import { Table } from "dexie";
 
 const cellStyle = "py-2 px-4";
 

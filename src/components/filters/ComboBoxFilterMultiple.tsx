@@ -3,7 +3,7 @@ import { Combobox } from "@headlessui/react";
 import type { SelectionType } from "../types";
 import { usePlayFilterContext } from "~/contexts/playFilterContext";
 import { useBggUser } from "~/hooks/bgg/useBggUser";
-import { Selector, Check, Search, Trash } from "~/components/icons";
+import { Check, Search, Trash } from "~/components/icons";
 import {
   hoverStyles,
   itemHoverStyles,
@@ -171,7 +171,7 @@ export default function ComboBoxFilterMultiple({ filter }: Props) {
       )}
       <div
         ref={filterBtnRef}
-        className="flex w-full items-center justify-between gap-4 overflow-hidden whitespace-nowrap text-left font-semibold transition-all sm:max-w-sm"
+        className="flex items-center justify-between w-full gap-4 overflow-hidden font-semibold text-left transition-all whitespace-nowrap sm:max-w-sm"
         onClick={clickButton}
       >
         {buttonText}
@@ -200,7 +200,7 @@ export default function ComboBoxFilterMultiple({ filter }: Props) {
                     onChange={(e: React.FormEvent<HTMLInputElement>) => {
                       setQuery(e.currentTarget.value);
                     }}
-                    className={`flex-1 bg-transparent font-semibold transition transition-all duration-500 ease-in-out placeholder:font-normal focus:outline-0`}
+                    className={`flex-1 bg-transparent font-semibold transition-all duration-500 ease-in-out placeholder:font-normal focus:outline-0`}
                     placeholder="search"
                   />
                   <Combobox.Button ref={btnRef} className="display-none">

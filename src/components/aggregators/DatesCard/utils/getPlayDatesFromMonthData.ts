@@ -1,4 +1,4 @@
-import type { Data, DateGroup, PlayCountDateGroup } from "../../types";
+import type { DateGroup, PlayCountDateGroup } from "../../types";
 
 type Args = {
   data: DateGroup | PlayCountDateGroup;

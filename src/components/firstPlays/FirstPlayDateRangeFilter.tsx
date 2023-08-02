@@ -3,8 +3,6 @@ import { baseStyles } from "~/components/styles";
 import DateRangePicker from "@wojtekmaj/react-daterange-picker";
 import { ChevronLeft, ChevronRight, Trash } from "../icons";
 
-const dateFormat = "YYYY-MM-DD";
-
 type Props = {
   dateRange: Date[] | undefined[];
   setDateRange: (dateRange: Date[] | undefined[]) => void;
@@ -21,7 +19,6 @@ export default function FirstPlayDateRangeFilter({
   const [isOpen, setIsOpen] = useState(false);
 
   const handleChange = (value: any) => {
-    console.log("typeof value", typeof value);
     setDateRange(value);
   };
 

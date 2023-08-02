@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardTitle } from "../Card";
 import { usePlayResultsContext } from "~/contexts/playResultsContext";
 import { usePlayFilterContext } from "~/contexts/playFilterContext";
@@ -11,10 +11,7 @@ import BackButton from "./BackButton";
 import { useCalendarScreenContext } from "../CalendarScreenContext";
 import RemoveCardButton from "../RemoveCardButton.tsx";
 
-type Props = {
-  userId: number;
-};
-export default function PlayCountCard({ userId }: Props) {
+export default function PlayCountCard() {
   const { state } = usePlayResultsContext();
   const { state: filterState } = usePlayFilterContext();
   const {

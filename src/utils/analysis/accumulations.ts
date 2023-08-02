@@ -1,5 +1,4 @@
 import type { SelectionType } from "~/components/types";
-import { usePlayResultsContext } from "~/contexts/playResultsContext";
 import { PlayDataModel } from "~/models/bgg/gameDataModels";
 
 export function getAllGames(
