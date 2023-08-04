@@ -11,15 +11,7 @@ import { ExclamationCircle } from "../icons";
 
 export default function PlaysDashboard() {
   const { user, error: userError } = useBggUser();
-  // for Testing
-  // useFilteredData();
-  // const { percentDone, error, userFirstTime } = usePlayData();
-
-  // For real
-  const { handleFiltering } = useFilteredData();
-  const { percentDone, error, userFirstTime } = usePlayData({
-    handleFiltering,
-  });
+  const { percentDone, error, userFirstTime, showProgress } = usePlayData();
 
   if (!user) return null;
 
@@ -43,6 +35,7 @@ export default function PlaysDashboard() {
         percentDone={percentDone}
         error={error}
         userFirstTime={userFirstTime}
+        showProgress={showProgress}
       />
       <Aggregators userId={user.userId} />
       <FilterBar />

@@ -8,6 +8,9 @@ import {
   getLatestPlaysInfo,
 } from "~/services/bggService";
 import { useBggUser } from "./useBggUser";
+import { useSessionStorage } from "../useSessionStorage.tsx";
+import useFilteredData from "~/contexts/useFilteredData.tsx";
+import useUsersFetched from "./useUsersFetched.tsx";
 
 /**
  * This is a hook to encapsulate the getting and storing of data into indexedDB.
@@ -22,25 +25,27 @@ import { useBggUser } from "./useBggUser";
  * 1. Return all the data
  */
 
-type Props = {
-  handleFiltering?: () => Promise<void>;
-};
-function usePlayData(props: Props) {
+function usePlayData() {
   const { user } = useBggUser() as { user: UserInfo };
+  const [showProgress, setShowProgress] = useState(false);
   const [percentDone, setPercentDone] = useState(0);
   const [error, setError] = useState(null);
   const [userFirstTime, setUserFirstTime] = useState(false);
-  const [fetching, setFetching] = useState(false); // prevents repeatedly fetching on load
+  // const [fetching, setFetching] = useState(false); // prevents repeatedly fetching on load
+  const { handleFiltering } = useFilteredData();
+  const { addFetchedUser, isUserFetched } = useUsersFetched();
+
+  const username = user?.username;
 
   const handleFetching = async (user: UserInfo) => {
-    if (fetching) return;
-
     try {
       if (!user) {
         throw Error("We cannot fetch user play data unless a user is set.");
       }
 
-      setFetching(true);
+      // don't get data if it's already been fetched this session
+      let fetched = isUserFetched(username);
+      if (fetched) return;
 
       const { latestPlayDate, latestPlayId } = await getLatestPlayData(
         user.userId
@@ -49,11 +54,16 @@ function usePlayData(props: Props) {
       // some play data already exists
       if (latestPlayDate && latestPlayId) {
         const latestPlaysInfo = await getLatestPlaysInfo(
-          user.username,
+          username,
           latestPlayDate
         );
+
+        console.log("hit");
+        if (latestPlayId === latestPlaysInfo.latestPlayId) return;
+        setShowProgress(true);
+
         const latestPlays = await getPlayDataWithExponentialBackingOff({
-          username: user.username,
+          username: username,
           pages: latestPlaysInfo.pages,
           startdate: latestPlayDate,
           setPercentDone,
@@ -62,39 +72,41 @@ function usePlayData(props: Props) {
           (play) => play.playId > latestPlayId
         );
         bulkAddPlays(unrecordedPlays);
-        if (props.handleFiltering) {
-          props.handleFiltering();
+        if (handleFiltering) {
+          handleFiltering();
         }
+        console.log("hit");
+        addFetchedUser(username);
         setError(null);
       } else {
         // this is the first time downloading play data
         setUserFirstTime(true);
-        const initialData = await getInitialPlayData(user.username);
+        const initialData = await getInitialPlayData(username);
         const allPlayData = await getPlayDataWithExponentialBackingOff({
-          username: user.username,
+          username: username,
           pages: initialData.pages,
           setPercentDone,
         });
         bulkAddPlays(allPlayData);
-        if (props.handleFiltering) {
-          props.handleFiltering();
+        if (handleFiltering) {
+          handleFiltering();
         }
+        setShowProgress(true);
+        addFetchedUser(username);
         setError(null);
       }
-      setFetching(false);
     } catch (err) {
       console.log(err);
       setPercentDone(0);
       // @ts-ignore
       setError(err.message);
-      setFetching(false);
       // @ts-ignore
       throw Error(err);
     }
   };
 
   useEffect(() => {
-    if (user) {
+    if (username) {
       handleFetching(user);
     }
   }, [user]);
@@ -104,6 +116,7 @@ function usePlayData(props: Props) {
     manuallyUpdate: () => handleFetching(user),
     error,
     userFirstTime,
+    showProgress,
   };
 }
 

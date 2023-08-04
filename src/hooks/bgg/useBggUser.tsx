@@ -61,7 +61,7 @@ const addUserToIndexDB = async (userInfo: UserInfo) => {
   try {
     return await db.users.add(userInfo);
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 };
 

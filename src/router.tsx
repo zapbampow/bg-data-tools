@@ -44,16 +44,6 @@ const router = createBrowserRouter(
         lazy={() => import("~/routes/$username.tools.tsx")}
       />
       <Route path=":username" lazy={() => import("~/routes/$username.tsx")} />
-
-      {/* <Route path="/" element={<BGGStatsHome />} action={homeAction} /> */}
-      {/* <Route path="/:username/plays" element={<PlayDashboard />} /> */}
-      {/* <Route path="/:username/tools/first-plays" element={<FirstPlays />} /> */}
-      {/* <Route path="/:username/tools" element={<Tools />} loader={toolsLoader} /> */}
-      {/* <Route path="/:username" element={<Username />} loader={usernameLoader} /> */}
-      {/* <Route path="/settings" element={<Settings />} /> */}
-      {/* <Route path="/feedback" element={<Feedback />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/how-to-use" element={<HowToUse />} /> */}
     </Route>
   )
   // { basename: import.meta.env.BASE_URL }

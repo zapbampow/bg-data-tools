@@ -221,11 +221,18 @@ export async function getLatestPlaysInfo(username: string, date: string) {
   try {
     const xmlData = await fetchXmlPlayData({ username, startdate: date });
     const data = convertXmlToJsObject(xmlData);
+    const flattened = flattenBGGPlayData(data);
+
+    const latestPlayId = flattened.reduce((acc, cur) => {
+      if (cur.playId > acc) return cur.playId;
+      return acc;
+    }, 0);
 
     const pages = Math.ceil(parseInt(data.plays._attributes.total, 10) / 100);
 
     return {
       pages,
+      latestPlayId,
     };
 
     // return plays;

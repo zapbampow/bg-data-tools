@@ -5,11 +5,13 @@ type Props = {
   percentDone: number;
   error: string | null;
   userFirstTime: boolean;
+  showProgress: boolean;
 };
 export default function DownloadProgress({
   percentDone,
   error,
   userFirstTime,
+  showProgress,
 }: Props) {
   const [show, setShow] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>();
@@ -19,33 +21,50 @@ export default function DownloadProgress({
   const [updatePropTime, setUpdatePropTime] = useState<number>();
   const [showSlowDownloadMessage, setShowSlowDownloadMessage] = useState(false);
 
-  useEffect(() => {
-    if (percentDone < 100 && !error) {
+  useEffect(
+    function handleShowProgress() {
+      if (!showProgress) {
+        setShow(false);
+        return;
+      }
+
       setShow(true);
-      return;
-    }
+    },
+    [percentDone, error, verb, showProgress]
+  );
 
-    let timeout: NodeJS.Timeout;
+  useEffect(
+    function closeWhen100Percent() {
+      if (percentDone < 100) return;
 
-    if (percentDone === 100) {
+      let timeout: NodeJS.Timeout;
+
       timeout = setTimeout(() => {
         setShow(false);
       }, 3000);
-      return;
-    }
 
-    if (error) {
+      return () => clearTimeout(timeout);
+    },
+    [percentDone]
+  );
+
+  useEffect(
+    function handleError() {
+      if (!error) return;
+
       setErrorMessage(
         `Something went wrong ${verb.toLowerCase()} your play data. Reload the page to try again.`
       );
+
+      let timeout: NodeJS.Timeout;
       timeout = setTimeout(() => {
         setShow(false);
       }, 10000);
-      return;
-    }
 
-    return () => clearTimeout(timeout);
-  }, [percentDone, error, verb]);
+      return () => clearTimeout(timeout);
+    },
+    [error]
+  );
 
   useEffect(
     function manageDisplayingSlowDownloadMessage() {
