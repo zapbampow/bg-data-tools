@@ -2,7 +2,6 @@ import FilterBar from "../filters/FilterBar";
 import { useBggUser } from "~/hooks/bgg/useBggUser";
 import usePlayData from "~/hooks/bgg/usePlayData";
 import RecordedPlays from "../answers/RecordedPlays";
-import useFilteredData from "~/contexts/useFilteredData";
 import Aggregators from "../aggregators";
 import DownloadProgress from "../DownloadProgress";
 import UsernameForm from "../forms/UsernameForm";
