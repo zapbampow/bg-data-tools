@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getUsers, deleteUserAndPlaysByUserId } from "~/services/idbService";
 
-type User = {
+export type User = {
   userId: number;
   username: string;
   name: string;

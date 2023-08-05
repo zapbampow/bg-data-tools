@@ -8,7 +8,6 @@ import {
   getLatestPlaysInfo,
 } from "~/services/bggService";
 import { useBggUser } from "./useBggUser";
-import { useSessionStorage } from "../useSessionStorage.tsx";
 import useFilteredData from "~/contexts/useFilteredData.tsx";
 import useUsersFetched from "./useUsersFetched.tsx";
 
@@ -58,7 +57,6 @@ function usePlayData() {
           latestPlayDate
         );
 
-        console.log("hit");
         if (latestPlayId === latestPlaysInfo.latestPlayId) return;
         setShowProgress(true);
 
@@ -75,7 +73,6 @@ function usePlayData() {
         if (handleFiltering) {
           handleFiltering();
         }
-        console.log("hit");
         addFetchedUser(username);
         setError(null);
       } else {

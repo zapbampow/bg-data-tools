@@ -1,9 +1,17 @@
 import useManageData from "~/hooks/bgg/useManageData";
 import { Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
+import useUsersFetched from "~/hooks/bgg/useUsersFetched";
+import type { User } from "~/hooks/bgg/useManageData";
 
 export function Component() {
   const { users, deleteUserData, processing, error } = useManageData();
+  const { removeFetchedUser } = useUsersFetched();
+
+  const handleDelete = async (user: User) => {
+    await deleteUserData(user.userId);
+    removeFetchedUser(user.username);
+  };
 
   return (
     <div className="w-full lg:w-[764px] px-2 mx-auto">
@@ -36,7 +44,7 @@ export function Component() {
                 </Link>
                 <button
                   className="px-4 py-2 font-semibold rounded-md bg-slate-200 hover:bg-slate-300 text-slate-800"
-                  onClick={() => deleteUserData(user.userId)}
+                  onClick={() => handleDelete(user)}
                   disabled={processing === user.userId}
                 >
                   {processing === user.userId ? "Deleting..." : "Delete"}
