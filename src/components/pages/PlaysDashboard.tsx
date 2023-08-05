@@ -14,6 +14,9 @@ export default function PlaysDashboard() {
 
   if (!user) return null;
 
+  const titleUserText =
+    user?.name && user.name.trim().length > 0 ? user.name : user.username;
+
   if (userError) {
     return (
       <Container>
@@ -36,6 +39,11 @@ export default function PlaysDashboard() {
         userFirstTime={userFirstTime}
         showProgress={showProgress}
       />
+      <Container>
+        <h1 className="mb-8 text-5xl font-semibold text-white">
+          Recorded plays for {titleUserText}
+        </h1>
+      </Container>
       <Aggregators userId={user.userId} />
       <FilterBar />
       <RecordedPlays />
