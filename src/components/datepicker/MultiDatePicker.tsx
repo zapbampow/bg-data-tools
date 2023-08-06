@@ -79,28 +79,30 @@ export default function MultiDatePickerComponent({ filter }: Props) {
   return (
     <div
       onClick={() => setIsOpen(true)}
-      className={`relative flex items-center gap-4 text-slate-700 ${baseStyles} hover:cursor-pointer`}
+      className={`relative flex flex-col sm:flex-row sm:items-center sm:gap-4 text-slate-700 ${baseStyles} hover:cursor-pointer`}
     >
       <div className="font-semibold">{filter.label}:</div>
-      <DateRangePicker
-        // @ts-ignore
-        value={value}
-        onChange={handleChange}
-        calendarIcon={null}
-        clearIcon={null}
-        showLeadingZeros={true}
-        locale="en-US"
-        nextLabel={<ChevronRight width={16} />}
-        prevLabel={<ChevronLeft width={16} />}
-        format="yyyy-MM-dd"
-        autoFocus={false}
-        openCalendarOnFocus={true}
-        isOpen={isOpen}
-        onCalendarClose={() => setIsOpen(false)}
-        rangeDivider="and"
-      />
-      <div onClick={removeFilter} className="ml-auto hover:text-red-500">
-        <Trash width={16} />
+      <div className="flex items-center gap-4">
+        <DateRangePicker
+          // @ts-ignore
+          value={value}
+          onChange={handleChange}
+          calendarIcon={null}
+          clearIcon={null}
+          showLeadingZeros={true}
+          locale="en-US"
+          nextLabel={<ChevronRight width={16} />}
+          prevLabel={<ChevronLeft width={16} />}
+          format="yyyy-MM-dd"
+          autoFocus={false}
+          openCalendarOnFocus={true}
+          isOpen={isOpen}
+          onCalendarClose={() => setIsOpen(false)}
+          rangeDivider="and"
+        />
+        <div onClick={removeFilter} className="ml-auto hover:text-red-500">
+          <Trash width={16} />
+        </div>
       </div>
     </div>
   );
