@@ -89,7 +89,7 @@ export default function NavMenu() {
 
   return (
     <Menu>
-      <Menu.Button className="text-slate-100">
+      <Menu.Button className="text-slate-100" aria-label="Open navigation menu">
         <MenuIcon />
       </Menu.Button>
 

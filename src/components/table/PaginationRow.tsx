@@ -26,6 +26,7 @@ export default function PaginationRow({ table }: Props) {
           className={`p-1 disabled:opacity-25`}
           onClick={() => table.setPageIndex(0)}
           disabled={!table.getCanPreviousPage()}
+          aria-label="Go to first page"
         >
           <ChevronsLeft />
         </button>
@@ -33,6 +34,7 @@ export default function PaginationRow({ table }: Props) {
           className="p-1 disabled:opacity-25"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
+          aria-label="Go to previous page"
         >
           <ChevronLeft />
         </button>
@@ -52,6 +54,7 @@ export default function PaginationRow({ table }: Props) {
               table.setPageIndex(page);
             }}
             className="w-16 px-1 text-center border rounded sm:text-left"
+            aria-label="Table page number"
           />
           <span>of {pageCount}</span>
         </span>
@@ -76,6 +79,7 @@ export default function PaginationRow({ table }: Props) {
           className="p-1 disabled:opacity-25"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
+          aria-label="Go to next page"
         >
           <ChevronRight />
         </button>
@@ -83,6 +87,7 @@ export default function PaginationRow({ table }: Props) {
           className="p-1 disabled:opacity-25"
           onClick={() => table.setPageIndex(table.getPageCount() - 1)}
           disabled={!table.getCanNextPage()}
+          aria-label="Go to last page"
         >
           <ChevronsRight />
         </button>
