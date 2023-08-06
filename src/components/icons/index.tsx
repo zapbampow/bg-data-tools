@@ -13,6 +13,7 @@ import Home from "./Home";
 import Meeple from "./Meeple";
 import Menu from "./Menu";
 import HomeMeeple from "./HomeMeeple";
+import Refresh from "./Refresh";
 import Search from "./Search";
 import Send from "./Send";
 import GithubIcon from "./GithubIcon";
@@ -45,6 +46,7 @@ export {
   Meeple,
   Menu,
   NewBadge,
+  Refresh,
   Search,
   Selector,
   Send,

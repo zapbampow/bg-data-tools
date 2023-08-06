@@ -8,8 +8,10 @@ import {
   Settings,
   Send,
   SignRight,
+  Refresh,
 } from "../icons";
 import { useParams, Link, useLocation } from "react-router-dom";
+import usePlayData from "~/hooks/bgg/usePlayData.tsx";
 
 const resourceLinks = [
   {
@@ -77,6 +79,14 @@ export default function NavMenu() {
 
   const tools = toolLinks(username, pathname);
 
+  const { manuallyUpdate, showProgress } = usePlayData();
+
+  async function forceUpdate(e: any, close: () => void) {
+    await manuallyUpdate(e);
+
+    close();
+  }
+
   return (
     <Menu>
       <Menu.Button className="text-slate-100">
@@ -95,6 +105,24 @@ export default function NavMenu() {
             </Link>
           </Menu.Item>
         ))}
+
+        {username && (
+          <Menu.Item as={Fragment}>
+            {({ close }) => (
+              <button onClick={(e) => forceUpdate(e, close)}>
+                <div className="flex items-center gap-2">
+                  <Refresh
+                    width={16}
+                    className={`${showProgress ? "animate-spin" : ""}`}
+                  />
+                  {`Get ${username}'${
+                    username[username.length - 1] !== "s" ? "s" : ""
+                  } newest data`}
+                </div>
+              </button>
+            )}
+          </Menu.Item>
+        )}
 
         <h3 className={h3Styles}>Resources</h3>
         {resourceLinks?.map((link) => (

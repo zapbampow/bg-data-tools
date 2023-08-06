@@ -36,15 +36,17 @@ function usePlayData() {
 
   const username = user?.username;
 
-  const handleFetching = async (user: UserInfo) => {
+  const handleFetching = async (user: UserInfo, force = false) => {
     try {
       if (!user) {
         throw Error("We cannot fetch user play data unless a user is set.");
       }
 
-      // don't get data if it's already been fetched this session
-      let fetched = isUserFetched(username);
-      if (fetched) return;
+      if (!force) {
+        // don't get data if it's already been fetched this session
+        let fetched = isUserFetched(username);
+        if (fetched) return;
+      }
 
       const { latestPlayDate, latestPlayId } = await getLatestPlayData(
         user.userId
@@ -66,29 +68,40 @@ function usePlayData() {
           startdate: latestPlayDate,
           setPercentDone,
         });
+
         const unrecordedPlays = latestPlays.filter(
           (play) => play.playId > latestPlayId
         );
         bulkAddPlays(unrecordedPlays);
+
         if (handleFiltering) {
           handleFiltering();
         }
+
         addFetchedUser(username);
         setError(null);
       } else {
         // this is the first time downloading play data
         setUserFirstTime(true);
         const initialData = await getInitialPlayData(username);
+        if (initialData.pages === 0) {
+          return;
+        }
+
+        setShowProgress(true);
+
         const allPlayData = await getPlayDataWithExponentialBackingOff({
           username: username,
           pages: initialData.pages,
           setPercentDone,
         });
+
         bulkAddPlays(allPlayData);
+
         if (handleFiltering) {
           handleFiltering();
         }
-        setShowProgress(true);
+
         addFetchedUser(username);
         setError(null);
       }
@@ -102,6 +115,11 @@ function usePlayData() {
     }
   };
 
+  const manuallyUpdate = async (e: any) => {
+    e.preventDefault();
+    await handleFetching(user, true);
+  };
+
   useEffect(() => {
     if (username) {
       handleFetching(user);
@@ -110,7 +128,7 @@ function usePlayData() {
 
   return {
     percentDone,
-    manuallyUpdate: () => handleFetching(user),
+    manuallyUpdate,
     error,
     userFirstTime,
     showProgress,
