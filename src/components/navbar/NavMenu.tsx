@@ -79,7 +79,7 @@ export default function NavMenu() {
 
   const tools = toolLinks(username, pathname);
 
-  const { manuallyUpdate, showProgress } = usePlayData();
+  const { manuallyUpdate, loading } = usePlayData();
 
   async function forceUpdate(e: any, close: () => void) {
     await manuallyUpdate(e);
@@ -113,7 +113,7 @@ export default function NavMenu() {
                 <div className="flex items-center gap-2">
                   <Refresh
                     width={16}
-                    className={`${showProgress ? "animate-spin" : ""}`}
+                    className={`${loading ? "animate-spin" : ""}`}
                   />
                   {`Get ${username}'${
                     username[username.length - 1] !== "s" ? "s" : ""

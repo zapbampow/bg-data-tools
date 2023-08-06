@@ -26,11 +26,11 @@ import useUsersFetched from "./useUsersFetched.tsx";
 
 function usePlayData() {
   const { user } = useBggUser() as { user: UserInfo };
-  const [showProgress, setShowProgress] = useState(false);
-  const [percentDone, setPercentDone] = useState(0);
+  const [loading, setLoading] = useState(false); // used for nav refresh spin animation
+  const [showProgress, setShowProgress] = useState(false); // used for progress bar
+  const [percentDone, setPercentDone] = useState(0); // used for progress bar
   const [error, setError] = useState(null);
   const [userFirstTime, setUserFirstTime] = useState(false);
-  // const [fetching, setFetching] = useState(false); // prevents repeatedly fetching on load
   const { handleFiltering } = useFilteredData();
   const { addFetchedUser, isUserFetched } = useUsersFetched();
 
@@ -61,6 +61,7 @@ function usePlayData() {
 
         if (latestPlayId === latestPlaysInfo.latestPlayId) return;
         setShowProgress(true);
+        setLoading(true);
 
         const latestPlays = await getPlayDataWithExponentialBackingOff({
           username: username,
@@ -78,6 +79,7 @@ function usePlayData() {
           handleFiltering();
         }
 
+        setLoading(false);
         addFetchedUser(username);
         setError(null);
       } else {
@@ -89,6 +91,7 @@ function usePlayData() {
         }
 
         setShowProgress(true);
+        setLoading(true);
 
         const allPlayData = await getPlayDataWithExponentialBackingOff({
           username: username,
@@ -102,6 +105,7 @@ function usePlayData() {
           handleFiltering();
         }
 
+        setLoading(false);
         addFetchedUser(username);
         setError(null);
       }
@@ -132,6 +136,7 @@ function usePlayData() {
     error,
     userFirstTime,
     showProgress,
+    loading,
   };
 }
 
