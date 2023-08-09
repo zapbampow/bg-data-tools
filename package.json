@@ -21,6 +21,7 @@
     "dayjs": "^1.11.9",
     "dexie": "^3.2.4",
     "fetch-retry": "^5.0.6",
+    "firebase": "^10.1.0",
     "react": "^18.2.0",
     "react-calendar": "^4.5.0",
     "react-chartjs-2": "^5.2.0",
