@@ -1,25 +1,57 @@
 import { db } from "./firebaseDB.ts";
 import {
   collection,
-  getDocs,
+  setDoc,
   doc,
+  getDocs,
   where,
   query,
-  and,
   serverTimestamp,
 } from "firebase/firestore";
+import epochToDateString from "~/utils/conversion/epochToDataString.ts";
+import dayjs from "dayjs";
+
 import type {
   CollectionReference,
   DocumentData,
   QuerySnapshot,
 } from "firebase/firestore";
-import epochToDateString from "~/utils/conversion/epochToDataString.ts";
-import { UserData } from "~/services/usageService/types.ts";
-import dayjs from "dayjs";
+import type {
+  UserService,
+  UserData,
+  UserToAdd,
+} from "~/services/usageService/types.ts";
 
 const bggUsersCollection: CollectionReference = collection(db, "bggUsers");
 const snapshot = await getDocs(bggUsersCollection);
 
+// TODO: add try catch to all these functions and update the types in the types file to include undefined
+
+// CREATE
+async function add(user: UserToAdd) {
+  try {
+    const newUser = await setDoc(
+      doc(bggUsersCollection, user.bggUserId.toString()),
+      {
+        bggUserId: user.bggUserId,
+        username: user.username,
+        createdAt: serverTimestamp(),
+      }
+    );
+    console.log({ newUser });
+
+    // const docRef = await addDoc(bggUsersCollection, {
+    //   bggUserId: user.bggUserId,
+    //   username: user.username,
+    //   createdAt: serverTimestamp(),
+    // });
+    return "newUser";
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
+
+// READ
 async function getAll() {
   return convertUsersSnapshot(snapshot);
 }
@@ -90,9 +122,12 @@ const dateStringToJSDate = (dateString: string, end: boolean = false) => {
   return jsDate;
 };
 
-export default {
+const firebaseUserService: UserService = {
+  add,
   getAll,
   getByUserId,
   getByUsername,
   getByCreatedDate,
 };
+
+export default firebaseUserService;

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getUserInfo } from "~/services/bggService";
 import type { UserInfo } from "~/models/bgg/userInfo";
 import { db } from "~/services/db";
+import usageDb from "~/services/usageService";
 
 export function useBggUser() {
   const { username } = useParams();
@@ -42,6 +43,12 @@ export function useBggUser() {
       if (userInfo) {
         setUser(userInfo);
         addUserToIndexDB(userInfo);
+
+        // add user to usage db
+        usageDb.users.add({
+          username: userInfo.username,
+          bggUserId: userInfo.userId,
+        });
       }
     }
   };
