@@ -31,19 +31,21 @@ const router = createBrowserRouter(
       <Route path="feedback" lazy={() => import("~/routes/feedback.tsx")} />
       <Route path="about" lazy={() => import("~/routes/about.tsx")} />
       <Route path="how-to-use" lazy={() => import("~/routes/how-to-use.tsx")} />
-      <Route
-        path=":username/plays"
-        lazy={() => import("~/routes/$username.plays.tsx")}
-      />
-      <Route
-        path=":username/tools/first-plays"
-        lazy={() => import("~/routes/$username.tools.first-plays.tsx")}
-      />
-      <Route
-        path=":username/tools"
-        lazy={() => import("~/routes/$username.tools.tsx")}
-      />
-      <Route path=":username" lazy={() => import("~/routes/$username.tsx")} />
+      <Route path=":username" lazy={() => import("~/routes/$username.tsx")}>
+        <Route
+          path="plays"
+          lazy={() => import("~/routes/$username.plays.tsx")}
+        />
+        <Route
+          path="tools/first-plays"
+          lazy={() => import("~/routes/$username.tools.first-plays.tsx")}
+        />
+        <Route
+          path="tools"
+          lazy={() => import("~/routes/$username.tools.tsx")}
+        />
+      </Route>
+      {/* <Route path=":username" lazy={() => import("~/routes/$username.tsx")} /> */}
     </Route>
   )
   // { basename: import.meta.env.BASE_URL }

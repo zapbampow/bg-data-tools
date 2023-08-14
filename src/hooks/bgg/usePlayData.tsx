@@ -25,7 +25,7 @@ import useUsersFetched from "./useUsersFetched.tsx";
  */
 
 function usePlayData() {
-  const { user } = useBggUser() as { user: UserInfo };
+  const { user } = useBggUser();
   const [loading, setLoading] = useState(false); // used for nav refresh spin animation
   const [showProgress, setShowProgress] = useState(false); // used for progress bar
   const [percentDone, setPercentDone] = useState(0); // used for progress bar
@@ -33,7 +33,6 @@ function usePlayData() {
   const [userFirstTime, setUserFirstTime] = useState(false);
   const { handleFiltering } = useFilteredData();
   const { addFetchedUser, isUserFetched } = useUsersFetched();
-
   const username = user?.username;
 
   const handleFetching = async (user: UserInfo, force = false) => {
@@ -58,6 +57,8 @@ function usePlayData() {
           username,
           latestPlayDate
         );
+
+        if (!latestPlaysInfo) return;
 
         if (latestPlayId === latestPlaysInfo.latestPlayId) return;
         setShowProgress(true);

@@ -17,8 +17,9 @@ export default function useUsersFetched() {
   const removeFetchedUser = (username: string) => {
     setFetchedUsers(fetchedUsers.filter((user) => user !== username));
   };
-  const isUserFetched = (username: string): boolean => {
+  const isUserFetched = (username: string | undefined): boolean => {
     if (!fetchedUsers) return false;
+    if (!username) return true;
     return fetchedUsers?.includes(username);
   };
 

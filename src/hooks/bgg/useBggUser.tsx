@@ -1,18 +1,21 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { getUserInfo } from "~/services/bggService";
 import type { UserInfo } from "~/models/bgg/userInfo";
 import { db } from "~/services/db";
 import usageDb from "~/services/usageService";
+import {
+  useUser,
+  useError,
+  useLoading,
+} from "~/contexts/userContext/userContextHooks.tsx";
 
 export function useBggUser() {
-  const { username } = useParams();
-  const [user, setUser] = useState<UserInfo | undefined>();
-  const [error, setError] = useState<string | undefined>();
+  // const { username } = useParams();
+  const { user, setUser } = useUser();
+  const { loading, setLoading } = useLoading();
+  const { error, setError } = useError();
 
-  const handleUserName = async (username: string) => {
-    if (user) return;
-
+  const getUser = async (username: string) => {
+    setLoading(true);
     setError(undefined);
 
     const dbUserInfo = await db.users
@@ -23,6 +26,8 @@ export function useBggUser() {
     // only hit the bgg api to get user if a user with that username doesn't already exist
     if (dbUserInfo) {
       setUser(dbUserInfo);
+      setLoading(false);
+      return dbUserInfo;
     } else {
       const userInfo = await getUserInfo(username);
       if (!userInfo) {
@@ -49,19 +54,13 @@ export function useBggUser() {
           username: userInfo.username,
           bggUserId: userInfo.userId,
         });
+        setLoading(false);
+        return userInfo;
       }
     }
   };
 
-  useEffect(() => {
-    if (username) {
-      handleUserName(username);
-    } else {
-      setUser(undefined);
-    }
-  }, [username]);
-
-  return { user, error };
+  return { user, getUser, loading, error };
 }
 
 const addUserToIndexDB = async (userInfo: UserInfo) => {

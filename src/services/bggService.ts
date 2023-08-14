@@ -56,11 +56,13 @@ export async function getInitialPlayData(username: string) {
 }
 
 export const getPlayDataWithExponentialBackingOff = async (options: {
-  username: string;
+  username: string | undefined;
   pages: number;
   startdate?: string;
   setPercentDone: (x: number) => void;
 }) => {
+  if (!options.username) throw new Error("username is undefined");
+
   try {
     const { username, pages, startdate, setPercentDone } = options;
 
@@ -217,7 +219,12 @@ export async function getUserInfo(
   }
 }
 
-export async function getLatestPlaysInfo(username: string, date: string) {
+export async function getLatestPlaysInfo(
+  username: string | undefined,
+  date: string
+) {
+  if (!username) return;
+
   try {
     const xmlData = await fetchXmlPlayData({ username, startdate: date });
     const data = convertXmlToJsObject(xmlData);
