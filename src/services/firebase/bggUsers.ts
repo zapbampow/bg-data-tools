@@ -7,6 +7,8 @@ import {
   where,
   query,
   serverTimestamp,
+  orderBy,
+  limit,
 } from "firebase/firestore";
 import epochToDateString from "~/utils/conversion/epochToDataString.ts";
 import dayjs from "dayjs";
@@ -30,22 +32,24 @@ const snapshot = await getDocs(bggUsersCollection);
 // CREATE
 async function add(user: UserToAdd) {
   try {
-    const newUser = await setDoc(
+    await setDoc(
       doc(bggUsersCollection, user.bggUserId.toString()),
       {
         bggUserId: user.bggUserId,
         username: user.username,
         createdAt: serverTimestamp(),
-      }
+      },
+      { merge: true }
     );
-    console.log({ newUser });
+
+    const latest = await getLastestByUsername(user.username);
 
     // const docRef = await addDoc(bggUsersCollection, {
     //   bggUserId: user.bggUserId,
     //   username: user.username,
     //   createdAt: serverTimestamp(),
     // });
-    return "newUser";
+    return latest;
   } catch (e) {
     console.error("Error adding document: ", e);
   }
@@ -65,6 +69,18 @@ async function getByUserId(bggUserId: number): Promise<UserData> {
 
 async function getByUsername(username: string): Promise<UserData> {
   const q = query(bggUsersCollection, where("username", "==", username));
+  const querySnapshot = await getDocs(q);
+  const data = convertUsersSnapshot(querySnapshot);
+  return data[0];
+}
+
+async function getLastestByUsername(username: string): Promise<UserData> {
+  const q = query(
+    bggUsersCollection,
+    where("username", "==", username),
+    orderBy("createdAt", "desc"),
+    limit(1)
+  );
   const querySnapshot = await getDocs(q);
   const data = convertUsersSnapshot(querySnapshot);
   return data[0];

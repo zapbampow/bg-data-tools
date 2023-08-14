@@ -48,12 +48,15 @@ export function useBggUser() {
       if (userInfo) {
         setUser(userInfo);
         addUserToIndexDB(userInfo);
+        const existingUser = await usageDb.users.getByUsername(username);
 
-        // add user to usage db
-        usageDb.users.add({
-          username: userInfo.username,
-          bggUserId: userInfo.userId,
-        });
+        if (!existingUser) {
+          // add user to usage db
+          usageDb.users.add({
+            username: userInfo.username,
+            bggUserId: userInfo.userId,
+          });
+        }
         setLoading(false);
         return userInfo;
       }
@@ -65,7 +68,7 @@ export function useBggUser() {
 
 const addUserToIndexDB = async (userInfo: UserInfo) => {
   try {
-    return await db.users.add(userInfo);
+    await db.users.add(userInfo);
   } catch (err) {
     // console.log(err);
   }
