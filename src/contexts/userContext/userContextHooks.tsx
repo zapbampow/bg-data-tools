@@ -1,11 +1,11 @@
 import { useCallback } from "react";
 import { useUserContext } from "./userContext.tsx";
-import type { User } from "~/hooks/bgg/useManageData.tsx";
+import { UserInfo } from "~/models/bgg/userInfo";
 
 const useUser = () => {
   const { state, dispatch } = useUserContext();
   const { user } = state;
-  const setUser = useCallback((user: User) => {
+  const setUser = useCallback((user: UserInfo) => {
     dispatch({ type: "setUser", payload: user });
   }, []);
 

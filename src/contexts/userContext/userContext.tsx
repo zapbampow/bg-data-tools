@@ -1,11 +1,11 @@
 import * as React from "react";
-import { User } from "~/hooks/bgg/useManageData.tsx";
+import { UserInfo } from "~/models/bgg/userInfo.ts";
 
 type UserProviderProps = { children: React.ReactNode };
 type Action =
   | {
       type: "setUser";
-      payload: User;
+      payload: UserInfo;
     }
   | {
       type: "setLoading";
@@ -18,7 +18,7 @@ type Action =
 type Dispatch = (action: Action) => void;
 
 type State = {
-  user: User | undefined;
+  user: UserInfo | undefined;
   error: string | undefined;
   loading: boolean | undefined;
 };

@@ -1,14 +1,9 @@
 import { useState, useEffect } from "react";
 import { getUsers, deleteUserAndPlaysByUserId } from "~/services/idbService";
-
-export type User = {
-  userId: number;
-  username: string;
-  name: string;
-};
+import { UserInfo } from "~/models/bgg/userInfo";
 
 export default function useManageData() {
-  const [users, setUsers] = useState<User[]>();
+  const [users, setUsers] = useState<UserInfo[]>();
   const [error, setError] = useState<string | null>(null);
   const [processing, setProcessing] = useState<number>();
 
@@ -33,12 +28,7 @@ export default function useManageData() {
   useEffect(function getAndSetUsers() {
     getUsers()
       .then((res) => {
-        const mappedUsers: User[] = res.map((user) => ({
-          userId: user.userId,
-          username: user.username,
-          name: user.name,
-        }));
-        setUsers(mappedUsers);
+        setUsers(res);
       })
       .catch((err) => {
         throw new Error(err);

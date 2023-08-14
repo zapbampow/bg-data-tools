@@ -2,13 +2,13 @@ import useManageData from "~/hooks/bgg/useManageData";
 import { Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import useUsersFetched from "~/hooks/bgg/useUsersFetched";
-import type { User } from "~/hooks/bgg/useManageData";
+import { UserInfo } from "~/models/bgg/userInfo.ts";
 
 export function Component() {
   const { users, deleteUserData, processing, error } = useManageData();
   const { removeFetchedUser } = useUsersFetched();
 
-  const handleDelete = async (user: User) => {
+  const handleDelete = async (user: UserInfo) => {
     await deleteUserData(user.userId);
     removeFetchedUser(user.username);
   };

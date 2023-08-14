@@ -37,7 +37,7 @@ function usePlayData() {
 
   const handleFetching = async (user: UserInfo, force = false) => {
     try {
-      if (!user) {
+      if (!user || !username) {
         throw Error("We cannot fetch user play data unless a user is set.");
       }
 
@@ -122,6 +122,7 @@ function usePlayData() {
 
   const manuallyUpdate = async (e: any) => {
     e.preventDefault();
+    if (!user) return;
     await handleFetching(user, true);
   };
 
