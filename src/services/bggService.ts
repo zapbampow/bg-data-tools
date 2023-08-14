@@ -32,7 +32,7 @@ export async function fetchXmlPlayData(options: FetchOptions) {
     const xmlData = await res.text();
     return xmlData;
   } catch (err) {
-    console.log("err: ", JSON.stringify(err));
+    // console.log("err: ", JSON.stringify(err));
     throw new Error(err);
   }
 }
@@ -44,7 +44,7 @@ export async function getInitialPlayData(username: string) {
 
     const pages = Math.ceil(parseInt(data.plays._attributes.total, 10) / 100);
 
-    console.log("pages: ", pages);
+    // console.log("pages: ", pages);
 
     return {
       pages,

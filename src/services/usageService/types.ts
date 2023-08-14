@@ -3,7 +3,6 @@ type UsageService = {
 };
 
 type UserData = {
-  id: string;
   bggUserId: number;
   username: string;
   createdAt: string;

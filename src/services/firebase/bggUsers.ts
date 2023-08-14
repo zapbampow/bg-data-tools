@@ -4,6 +4,7 @@ import {
   setDoc,
   doc,
   getDocs,
+  getDoc,
   where,
   query,
   serverTimestamp,
@@ -24,7 +25,13 @@ import type {
   UserToAdd,
 } from "~/services/usageService/types.ts";
 
-const bggUsersCollection: CollectionReference = collection(db, "bggUsers");
+const isDev = import.meta.env.DEV;
+const usersCollectionName = isDev ? "bggUsersDev" : "bggUsers";
+
+const bggUsersCollection: CollectionReference = collection(
+  db,
+  usersCollectionName
+);
 const snapshot = await getDocs(bggUsersCollection);
 
 // TODO: add try catch to all these functions and update the types in the types file to include undefined
@@ -44,11 +51,6 @@ async function add(user: UserToAdd) {
 
     const latest = await getLastestByUsername(user.username);
 
-    // const docRef = await addDoc(bggUsersCollection, {
-    //   bggUserId: user.bggUserId,
-    //   username: user.username,
-    //   createdAt: serverTimestamp(),
-    // });
     return latest;
   } catch (e) {
     console.error("Error adding document: ", e);
@@ -60,11 +62,13 @@ async function getAll() {
   return convertUsersSnapshot(snapshot);
 }
 
-async function getByUserId(bggUserId: number): Promise<UserData> {
-  const q = query(bggUsersCollection, where("bggUserId", "==", bggUserId));
-  const querySnapshot = await getDocs(q);
-  const data = convertUsersSnapshot(querySnapshot);
-  return data[0];
+async function getByUserId(bggUserId: number): Promise<UserData | undefined> {
+  const userDoc = await getDoc(doc(bggUsersCollection, bggUserId.toString()));
+  const userData = userDoc.data();
+  if (!userData) return;
+
+  const user = convertUserSnapshotData(userData);
+  return user;
 }
 
 async function getByUsername(username: string): Promise<UserData> {
@@ -108,18 +112,23 @@ async function getByCreatedDate(
 }
 
 // UTILS
-const convertUsersSnapshot = (snapshot: QuerySnapshot): UserData[] => {
+export const convertUserSnapshotData = (docData: DocumentData): UserData => {
+  const { createdAt, bggUserId, username } = docData;
+  const createdAtDate = epochToDateString(createdAt.seconds);
+
+  return {
+    bggUserId,
+    username,
+    createdAt: createdAtDate,
+  };
+};
+
+const convertUsersSnapshot = (
+  snapshot: QuerySnapshot | DocumentData
+): UserData[] => {
   const data = snapshot.docs.map((doc: DocumentData) => {
     const docData = doc.data();
-    const { createdAt, bggUserId, username } = docData;
-    const createdAtDate = epochToDateString(createdAt.seconds);
-
-    return {
-      bggUserId,
-      username,
-      createdAt: createdAtDate,
-      id: doc.id,
-    };
+    return convertUserSnapshotData(docData);
   });
 
   return data;

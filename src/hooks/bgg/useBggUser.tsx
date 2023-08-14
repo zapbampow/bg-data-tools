@@ -48,7 +48,7 @@ export function useBggUser() {
       if (userInfo) {
         setUser(userInfo);
         addUserToIndexDB(userInfo);
-        const existingUser = await usageDb.users.getByUsername(username);
+        const existingUser = await usageDb.users.getByUserId(userInfo.userId);
 
         if (!existingUser) {
           // add user to usage db
