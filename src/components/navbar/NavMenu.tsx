@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { Menu } from "@headlessui/react";
 import {
   // GithubIcon,
@@ -12,6 +12,7 @@ import {
 } from "../icons";
 import { useParams, Link, useLocation } from "react-router-dom";
 import usePlayData from "~/hooks/bgg/usePlayData.tsx";
+import useUsageHistory from "~/hooks/bgg/useUsageHistory.tsx";
 
 const resourceLinks = [
   {
@@ -76,6 +77,7 @@ const h3Styles = "text-sm font-semibold uppercase opacity-60";
 export default function NavMenu() {
   const { username } = useParams();
   const { pathname } = useLocation();
+  const { addPageView } = useUsageHistory();
 
   const tools = toolLinks(username, pathname);
 
@@ -83,6 +85,8 @@ export default function NavMenu() {
 
   async function forceUpdate(e: any, close: () => void) {
     await manuallyUpdate(e);
+
+    addPageView(`get-newest-data`);
 
     close();
   }

@@ -7,10 +7,18 @@ import DownloadProgress from "../DownloadProgress";
 import UsernameForm from "../forms/UsernameForm";
 import { Container } from "./layout";
 import { ExclamationCircle } from "../icons";
+import useUsageHistory from "~/hooks/bgg/useUsageHistory";
+import { useEffect } from "react";
 
 export default function PlaysDashboard() {
   const { user, error: userError } = useBggUser();
   const { percentDone, error, userFirstTime, showProgress } = usePlayData();
+  const { addPageView, loading } = useUsageHistory();
+
+  useEffect(() => {
+    if (loading) return;
+    addPageView(`plays`);
+  }, []);
 
   if (!user) return null;
 

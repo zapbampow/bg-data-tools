@@ -9,6 +9,7 @@ import {
   FirstPlayDateRangeFilter,
 } from "~/components/firstPlays";
 import dayjs from "dayjs";
+import useUsageHistory from "~/hooks/bgg/useUsageHistory.tsx";
 
 type State = {
   selectedGameName: string;
@@ -65,6 +66,7 @@ const reducer = (state: State, action: Action) => {
 
 export function Component() {
   const { username } = useParams();
+  const { addPageView, loading } = useUsageHistory();
 
   const [
     { plays, filteredPlays, dateRange, selectedGameName, showDateSelector },
@@ -76,6 +78,11 @@ export function Component() {
     filteredPlays: [],
     showDateSelector: false,
   });
+
+  useEffect(() => {
+    if (loading) return;
+    addPageView(`first-plays`);
+  }, []);
 
   useEffect(() => {
     if (!username) return;

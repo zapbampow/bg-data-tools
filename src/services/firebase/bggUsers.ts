@@ -26,7 +26,7 @@ import type {
 } from "~/services/usageService/types.ts";
 
 const isDev = import.meta.env.DEV;
-const usersCollectionName = isDev ? "bggUsersDev" : "bggUsers";
+export const usersCollectionName = isDev ? "bggUsersDev" : "bggUsers";
 
 const bggUsersCollection: CollectionReference = collection(
   db,
@@ -63,12 +63,17 @@ async function getAll() {
 }
 
 async function getByUserId(bggUserId: number): Promise<UserData | undefined> {
-  const userDoc = await getDoc(doc(bggUsersCollection, bggUserId.toString()));
-  const userData = userDoc.data();
-  if (!userData) return;
+  try {
+    const userDoc = await getDoc(doc(bggUsersCollection, bggUserId.toString()));
+    const userData = userDoc.data();
+    if (!userData) return;
 
-  const user = convertUserSnapshotData(userData);
-  return user;
+    const user = convertUserSnapshotData(userData);
+    return user;
+  } catch (e) {
+    console.error("Error getting document: ", e);
+    throw e;
+  }
 }
 
 async function getByUsername(username: string): Promise<UserData> {

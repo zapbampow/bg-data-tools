@@ -1,7 +1,16 @@
 import "~/styles/bggStats/markdownStyles.css";
 import { BggLogo } from "~/components/icons";
+import { useEffect } from "react";
+import useUsageHistory from "~/hooks/bgg/useUsageHistory.tsx";
 
 export function Component() {
+  const { addPageView, loading } = useUsageHistory();
+
+  useEffect(() => {
+    if (loading) return;
+    addPageView(`feedback`);
+  }, []);
+
   return (
     <div className="w-full lg:w-[764px] px-2 mx-auto pb-8">
       <div className="p-8 mb-16 rounded-md markdown bg-slate-100">
