@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocalStorage } from "./useLocalStorage.tsx";
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuid } from "uuid";
 
 export default function useStoredUniqueId() {
   const [uniqueId, setUniqueId] = useLocalStorage("uniqueId", "");
@@ -16,5 +16,5 @@ export default function useStoredUniqueId() {
 }
 
 function generateUniqueId() {
-  return uuidv4();
+  return uuid();
 }

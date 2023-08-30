@@ -5,14 +5,9 @@ import {
   doc,
   getDocs,
   getDoc,
-  where,
-  query,
   serverTimestamp,
-  orderBy,
-  limit,
 } from "firebase/firestore";
 import epochToDateString from "~/utils/conversion/epochToDataString.ts";
-import dayjs from "dayjs";
 
 import type {
   CollectionReference,
@@ -20,13 +15,11 @@ import type {
   QuerySnapshot,
 } from "firebase/firestore";
 import type {
-  UserService,
-  UserData,
-  UserToAdd,
   UsageData,
   UsageHistoryService,
 } from "~/services/usageService/types.ts";
 import { usersCollectionName } from "./bggUsers.ts";
+import { getLatestByUserId } from "./bggUsers.ts";
 
 const isDev = import.meta.env.DEV;
 const historyCollectionName = isDev ? "usageHistoryDev" : "usageHistory";
@@ -35,7 +28,6 @@ const historyCollection: CollectionReference = collection(
   db,
   historyCollectionName
 );
-const snapshot = await getDocs(historyCollection);
 
 async function add(userId: number, page: string, uniqueId: string) {
   try {
@@ -51,7 +43,7 @@ async function add(userId: number, page: string, uniqueId: string) {
       { merge: true }
     );
 
-    const latest = await getLastestByUsername(user.username);
+    const latest = await getLatestByUserId(userId);
 
     return latest;
   } catch (e) {

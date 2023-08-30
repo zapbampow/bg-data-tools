@@ -1,13 +1,10 @@
 import UsernameForm from "~/components/forms/UsernameForm";
 import { redirect } from "react-router-dom";
 import type { ActionFunctionArgs } from "react-router-dom";
-import db from "~/services/usageService";
-import { useEffect } from "react";
 
 export async function action({ request }: ActionFunctionArgs) {
   const body = await request.formData();
   const username = body.get("username");
-  console.log("username", username);
   return redirect(`${username}`);
 }
 

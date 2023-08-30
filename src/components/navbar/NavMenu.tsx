@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import { Menu } from "@headlessui/react";
 import {
   // GithubIcon,

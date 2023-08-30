@@ -95,6 +95,18 @@ async function getLastestByUsername(username: string): Promise<UserData> {
   return data[0];
 }
 
+export async function getLatestByUserId(userId: number): Promise<UserData> {
+  const q = query(
+    bggUsersCollection,
+    where("bggUserId", "==", userId),
+    orderBy("createdAt", "desc"),
+    limit(1)
+  );
+  const querySnapshot = await getDocs(q);
+  const data = convertUsersSnapshot(querySnapshot);
+  return data[0];
+}
+
 const today = dayjs().format("YYYY-MM-DD");
 
 async function getByCreatedDate(
