@@ -1,8 +1,8 @@
-import React from "react";
-import usageDB from "~/services/usageService";
-import { useUser } from "~/contexts/userContext/userContextHooks.tsx";
-import { useSessionStorage } from "../useSessionStorage.tsx";
 import dayjs from "dayjs";
+import React from "react";
+import { useUser } from "~/contexts/userContext/userContextHooks.tsx";
+import usageDB from "~/services/usageService";
+import { useSessionStorage } from "../useSessionStorage.tsx";
 import useStoredUniqueId from "../useStoredUniqueId.tsx";
 
 type PageView = {
@@ -24,7 +24,7 @@ export default function useUsageHistory() {
 
     setLoading(true);
 
-    await usageDB.usageHistory.add(user.userId, page, uniqueId);
+    await usageDB.usageHistory.add(user.userId, user.username, page, uniqueId);
 
     let today = dayjs().format("YYYY-MM-DD");
     let viewData = { userId: user.userId, page, date: today };

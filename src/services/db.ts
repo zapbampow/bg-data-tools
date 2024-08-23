@@ -27,6 +27,6 @@ export const bulkAddPlays = async (data: PlayDataModel[]) => {
   try {
     await db.plays.bulkAdd(data);
   } catch (e) {
-    console.error(e);
+    // console.error(e);
   }
 };

@@ -1,13 +1,13 @@
-import { db } from "./firebaseDB.ts";
 import {
   collection,
-  setDoc,
   doc,
-  getDocs,
   getDoc,
+  getDocs,
   serverTimestamp,
+  setDoc,
 } from "firebase/firestore";
 import epochToDateString from "~/utils/conversion/epochToDataString.ts";
+import { db } from "./firebaseDB.ts";
 
 import type {
   CollectionReference,
@@ -18,8 +18,7 @@ import type {
   UsageData,
   UsageHistoryService,
 } from "~/services/usageService/types.ts";
-import { usersCollectionName } from "./bggUsers.ts";
-import { getLatestByUserId } from "./bggUsers.ts";
+import { getLatestByUserId, usersCollectionName } from "./bggUsers.ts";
 
 const isDev = import.meta.env.DEV;
 const historyCollectionName = isDev ? "usageHistoryDev" : "usageHistory";
@@ -29,14 +28,19 @@ const historyCollection: CollectionReference = collection(
   historyCollectionName
 );
 
-async function add(userId: number, page: string, uniqueId: string) {
+async function add(
+  userId: number,
+  username: string,
+  page: string,
+  uniqueId: string
+) {
   try {
     await setDoc(
       doc(historyCollection),
       {
         bggUserId: userId,
         page,
-        user: `/${usersCollectionName}/${userId.toString()}`,
+        bggUser: username,
         uniqueId,
         createdAt: serverTimestamp(),
       },
