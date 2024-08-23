@@ -34,6 +34,7 @@ type UsageData = {
 type UsageHistoryService = {
   add: (
     userId: number,
+    username: string,
     page: string,
     uniqueId: string
   ) => Promise<UserData | undefined>;
@@ -42,10 +43,10 @@ type UsageHistoryService = {
 };
 
 export type {
-  UserUsageService,
-  UsageHistoryService,
   UsageData,
+  UsageHistoryService,
   UserData,
-  UserToAdd,
   UserService,
+  UserToAdd,
+  UserUsageService,
 };

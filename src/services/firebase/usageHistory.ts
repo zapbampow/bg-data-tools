@@ -18,7 +18,7 @@ import type {
   UsageData,
   UsageHistoryService,
 } from "~/services/usageService/types.ts";
-import { getLatestByUserId, usersCollectionName } from "./bggUsers.ts";
+import { getLatestByUserId } from "./bggUsers.ts";
 
 const isDev = import.meta.env.DEV;
 const historyCollectionName = isDev ? "usageHistoryDev" : "usageHistory";
