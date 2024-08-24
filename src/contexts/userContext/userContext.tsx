@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { UserInfo } from "~/models/bgg/userInfo.ts";
 
 type UserProviderProps = { children: React.ReactNode };

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import type { FilterType } from "~/services/queryService/types";
 
 type PlayFilterProviderProps = { children: React.ReactNode };
