@@ -1,0 +1,1 @@
+import{j as o}from"./index-zwKx1JV-.js";function n({className:x,children:t}){return o.jsx("div",{className:`w-full lg:w-[960px] xl:w-[1024] 2xl:w-[1280] px-2 mx-auto ${x||""}`,children:t})}export{n as C};
