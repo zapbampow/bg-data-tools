@@ -1,3 +1,4 @@
+
 import {
   createRoutesFromElements,
   createBrowserRouter,
@@ -6,17 +7,6 @@ import {
 } from "react-router-dom";
 
 import Root from "~/routes/root.tsx";
-// import BGGStatsHome from "~/routes/index.tsx";
-// import { action as homeAction } from "~/components/forms/UsernameForm.tsx";
-// import Username, { loader as usernameLoader } from "~/routes/$username.tsx";
-// import Tools, { loader as toolsLoader } from "~/routes/$username.tools.tsx";
-// import FirstPlays from "~/routes/$username.tools.first-plays.tsx";
-// import PlayDashboard from "~/routes/$username.plays.tsx";
-// import Settings from "~/routes/settings.tsx";
-// import Feedback from "~/routes/feedback.tsx";
-// import About from "~/routes/about.tsx";
-// import HowToUse from "~/routes/how-to-use.tsx";
-
 /**
  * TODO
  * Add Error Elements to routes
@@ -31,6 +21,17 @@ const router = createBrowserRouter(
       <Route path="feedback" lazy={() => import("~/routes/feedback.tsx")} />
       <Route path="about" lazy={() => import("~/routes/about.tsx")} />
       <Route path="how-to-use" lazy={() => import("~/routes/how-to-use.tsx")} />
+      
+      <Route
+        path="collection"
+        lazy={() => import("~/routes/collection.tsx")}
+      >
+        <Route
+          path=":username"
+          lazy={() => import("~/routes/collection.$username.tsx")}
+        />
+      </Route>
+
       <Route path=":username" lazy={() => import("~/routes/$username.tsx")}>
         <Route
           path="plays"
@@ -44,7 +45,9 @@ const router = createBrowserRouter(
           path="tools"
           lazy={() => import("~/routes/$username.tools.tsx")}
         />
+
       </Route>
+      
       {/* <Route path=":username" lazy={() => import("~/routes/$username.tsx")} /> */}
     </Route>
   )
