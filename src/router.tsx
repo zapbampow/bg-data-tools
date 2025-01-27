@@ -21,16 +21,16 @@ const router = createBrowserRouter(
       <Route path="feedback" lazy={() => import("~/routes/feedback.tsx")} />
       <Route path="about" lazy={() => import("~/routes/about.tsx")} />
       <Route path="how-to-use" lazy={() => import("~/routes/how-to-use.tsx")} />
-      
+
       <Route
         path="collection"
         lazy={() => import("~/routes/collection.tsx")}
-      >
-        <Route
-          path=":username"
-          lazy={() => import("~/routes/collection.$username.tsx")}
-        />
-      </Route>
+      />
+
+      <Route
+        path="collection/:username"
+        lazy={() => import("~/routes/collection.$username.tsx")}
+      />
 
       <Route path=":username" lazy={() => import("~/routes/$username.tsx")}>
         <Route
@@ -47,7 +47,7 @@ const router = createBrowserRouter(
         />
 
       </Route>
-      
+
       {/* <Route path=":username" lazy={() => import("~/routes/$username.tsx")} /> */}
     </Route>
   )
