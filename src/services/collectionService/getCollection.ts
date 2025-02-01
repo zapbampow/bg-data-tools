@@ -2,11 +2,15 @@ import { useQuery, type UseQueryResult } from "@tanstack/react-query";
 import { baseUrl } from "./config";
 import { Game } from "~/utils/collection/groupCollectionByActionDate";
 
-export const useGetCollection = (username: string): UseQueryResult<Game[], Error> => {
+interface Props {
+    username: string;
+}
+export const useGetCollection = ({ username }: Props): UseQueryResult<Game[], Error> => {
     const query = useQuery({
         queryKey: ["collection", username],
         queryFn: () => getCollection(username),
-        retry: 0,
+        retryDelay: 1000,
+        retry: true
     })
 
     return query;

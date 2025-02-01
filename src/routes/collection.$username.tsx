@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useGetCollection } from '../services/collectionService/getCollection'
 import { useParams } from 'react-router-dom';
 import CollectionByDate from '~/components/collection/CollectionByDate';
@@ -6,15 +6,25 @@ import ListTypeSelector from '~/components/collection/ListTypeSelector';
 import { Container } from '~/components/pages/layout';
 import { groupCollectionByActionDate, type GroupedAction } from '~/utils/collection/groupCollectionByActionDate';
 import CollectionByGame from '~/components/collection/CollectionByGame';
+import useNamedSearchParams from '~/hooks/useNamedSearchParams';
 
 export function Component() {
     const { username = "" } = useParams();
-    const { data, isLoading, isError, error } = useGetCollection(username);
+    const [params, setSearchParams] = useNamedSearchParams(["action", "message"])
+    const { data, isLoading, isError, isSuccess, error } = useGetCollection({ username });
+
+    useEffect(() => {
+        if (isSuccess) {
+            const newParams = new URLSearchParams();
+            setSearchParams(newParams);
+        }
+    }, [isSuccess, setSearchParams])
 
     const actionHistory: GroupedAction[] = groupCollectionByActionDate(data || []);
-    console.log({ data, actionHistory })
 
     const [listType, setListType] = useState<'date' | 'game'>('date');
+
+    const collectionBeingPrepared = params.action === "redirectTrackingInitialization" && Boolean(params.message)
 
     return (
         <Container>
@@ -23,15 +33,22 @@ export function Component() {
             {isLoading && <p>Loading...</p>}
             {isError && <p>Error: something went wrong getting you collection history</p>}
 
-            <ListTypeSelector listType={listType} setListType={setListType} />
+            {collectionBeingPrepared && <p>{params.message}</p>}
+            {isSuccess && !data && <p>No collection history found for {username}</p>}
 
-            {listType === 'date' &&
-                <CollectionByDate actionHistory={actionHistory} />
-            }
+            {data && isSuccess && (
+                <>
+                    <ListTypeSelector listType={listType} setListType={setListType} />
 
-            {listType === 'game' && data &&
-                <CollectionByGame games={data} />
-            }
+                    {listType === 'date' &&
+                        <CollectionByDate actionHistory={actionHistory} />
+                    }
+
+                    {listType === 'game' && data &&
+                        <CollectionByGame games={data} />
+                    }
+                </>
+            )}
         </Container>
     )
 }

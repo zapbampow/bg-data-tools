@@ -3,9 +3,8 @@ import type { ActionFunctionArgs } from "react-router-dom";
 
 export async function action({ request }: ActionFunctionArgs) {
   const body = await request.formData();
-  const username = body.get("username");
-  console.log("username", username);
-  return redirect(`${username}`);
+  const username = body.get("username") as string;
+  return redirect(username);
 }
 
 export default function UsernameForm() {
@@ -16,6 +15,7 @@ export default function UsernameForm() {
         name="username"
         type="text"
         placeholder="BGG Username"
+        required
       />
       <button
         className="px-4 py-2 text-3xl font-semibold rounded-md bg-slate-100"
