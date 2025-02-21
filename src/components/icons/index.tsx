@@ -26,6 +26,7 @@ import TrophyFilled from "./TrophyFilled";
 import Dice1 from "./Dice1";
 import NewBadge from "./NewBadge";
 import Trophy from "./Trophy";
+import Play from "./Play"
 
 export {
   Backspace,
@@ -46,6 +47,7 @@ export {
   Meeple,
   Menu,
   NewBadge,
+  Play,
   Refresh,
   Search,
   Selector,

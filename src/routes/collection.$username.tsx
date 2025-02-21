@@ -4,11 +4,13 @@ import { useParams } from 'react-router-dom';
 import CollectionByDate from '~/components/collection/CollectionByDate';
 import ListTypeSelector from '~/components/collection/ListTypeSelector';
 import { Container } from '~/components/pages/layout';
-import { groupCollectionByActionDate, type GroupedAction } from '~/utils/collection/groupCollectionByActionDate';
 import CollectionByGame from '~/components/collection/CollectionByGame';
 import useNamedSearchParams from '~/hooks/useNamedSearchParams';
+import CollectionBeingPrepared from '~/components/collection/CollectionBeingPrepared';
 
 export function Component() {
+    const [listType, setListType] = useState<'date' | 'game'>('date');
+
     const { username = "" } = useParams();
     const [params, setSearchParams] = useNamedSearchParams(["action", "message"])
     const { data, isLoading, isError, isSuccess, error } = useGetCollection({ username });
@@ -18,13 +20,10 @@ export function Component() {
             const newParams = new URLSearchParams();
             setSearchParams(newParams);
         }
-    }, [isSuccess, setSearchParams])
+    }, [isSuccess, setSearchParams, data])
 
-    const actionHistory: GroupedAction[] = groupCollectionByActionDate(data || []);
 
-    const [listType, setListType] = useState<'date' | 'game'>('date');
-
-    const collectionBeingPrepared = params.action === "redirectTrackingInitialization" && Boolean(params.message)
+    const collectionBeingPrepared = params.message === "collection_still_preparing" || params.message === "tracking_initialized"
 
     return (
         <Container>
@@ -33,7 +32,7 @@ export function Component() {
             {isLoading && <p>Loading...</p>}
             {isError && <p>Error: something went wrong getting you collection history</p>}
 
-            {collectionBeingPrepared && <p>{params.message}</p>}
+            {collectionBeingPrepared && <CollectionBeingPrepared />}
             {isSuccess && !data && <p>No collection history found for {username}</p>}
 
             {data && isSuccess && (
@@ -41,7 +40,7 @@ export function Component() {
                     <ListTypeSelector listType={listType} setListType={setListType} />
 
                     {listType === 'date' &&
-                        <CollectionByDate actionHistory={actionHistory} />
+                        <CollectionByDate games={data} />
                     }
 
                     {listType === 'game' && data &&

@@ -3,9 +3,9 @@ export interface Game {
     gameId: number;
     actions: { action: 'add' | 'remove'; date: string }[];
     status: string;
-    thumbnailUrl: string;
-    lastUpdated: string;
-    lastModifiedBGG: string;
+    // thumbnailUrl: string;
+    // lastUpdated: string;
+    // lastModifiedBGG: string;
 }
 
 export interface GroupedAction {
@@ -20,14 +20,13 @@ export interface GroupedAction {
 
 export function groupCollectionByActionDate(games: Game[]): GroupedAction[] {
     const dateGroups: Record<string, GroupedAction> = {};
-
+    console.log('games', games)
     games.forEach(game => {
         const actionDate = game.actions[0].date.split(' ')[0];
         const actionDetails = {
             action: game.actions[0].action,
             gameName: game.gameName,
             gameId: game.gameId,
-            thumbnail: game.thumbnailUrl
         };
 
         if (!dateGroups[actionDate]) {

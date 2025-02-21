@@ -1,11 +1,11 @@
 import { useQuery, type UseQueryResult } from "@tanstack/react-query";
 import { baseUrl } from "./config";
-import { Game } from "~/utils/collection/groupCollectionByActionDate";
+import { CollectionAction } from "~/utils/collection/types";
 
 interface Props {
     username: string;
 }
-export const useGetCollection = ({ username }: Props): UseQueryResult<Game[], Error> => {
+export const useGetCollection = ({ username }: Props): UseQueryResult<CollectionAction[], Error> => {
     const query = useQuery({
         queryKey: ["collection", username],
         queryFn: () => getCollection(username),
@@ -27,7 +27,7 @@ const getCollection = async (username = ""): Promise<Game[]> => {
         const res = await fetch(url, {
             method
         })
-        const json = await res.json() as Game[];
+        const json = await res.json() as CollectionAction[];
         return json;
     } catch (err) {
         if (err instanceof Error) {

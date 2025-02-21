@@ -10,7 +10,11 @@ export function Component() {
     const { mutate, isPending, isError, error } = useInitCollection({
         username: value,
         onSuccess: (res) => {
-            navigate(`/collection/${value}?action=${res.action}&message=${res.message}`)
+            console.log(res)
+            navigate(`/collection/${value}?message=${res.message}`)
+        },
+        onError: (err) => {
+            console.error(err)
         }
     })
 
@@ -35,7 +39,15 @@ export function Component() {
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4 items-center my-4">
                     <div className='flex flex-col'>
                         <label className='uppercase text-sm pl-1'>BGG Username to Track</label>
-                        <input className="px-4 py-2 rounded-md border border-slate-300 w-fit text-xl" value={value} onChange={(e) => setValue(e.target.value)} placeholder="BGG Username" required />
+                        <input
+                            className="px-4 py-2 rounded-md border border-slate-300 w-fit text-xl invalid:border-red-500" value={value}
+                            onChange={(e) => setValue(e.target.value)}
+                            placeholder="BGG Username"
+                            required
+                            pattern="[a-zA-Z0-9]+"
+                            title="Only letters and numbers are allowed"
+                            autoFocus
+                        />
                     </div>
 
                     {errorMessage && isError && <p className="p-4 bg-red-100 border border-red-300 text-red-600 rounded-md">Error: {errorMessage}</p>}
