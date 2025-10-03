@@ -7,6 +7,7 @@ import AggregatorMenu from "./AggregatorMenu/AggregatorMenu";
 import PlayCountCard from "./PlayCountCard";
 import { CalendarScreenProvider } from "./CalendarScreenContext";
 import { useAggregatorContext } from "./AggregatorContext.tsx";
+import useInitialAggregatorCards from "./useInitialAggregatorCards.tsx";
 
 type Props = {
   userId: number;
@@ -14,6 +15,7 @@ type Props = {
 
 export default function AggregatorRow({ userId }: Props) {
   const { settings, setSettings } = useAggregatorContext();
+  useInitialAggregatorCards();
 
   return (
     <CalendarScreenProvider>
