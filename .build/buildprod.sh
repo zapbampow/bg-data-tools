@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define paths
-BUILD_DESTINATION="/var/www/bg-data-tools"
+BUILD_DESTINATION="/var/www/bgdatatools.com"
 OLD_BUILD="/home/clayton/bg-data-tools/.build/oldBuild"
 DIST_DIR="/home/clayton/bg-data-tools/dist"
 
