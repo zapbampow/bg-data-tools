@@ -12,19 +12,18 @@ type AggregatorProviderProps = { children: React.ReactNode };
 
 const AggregatorContext = React.createContext<
   | {
-      settings: Setting[];
-      setSettings: (settings: Setting[]) => void;
-    }
+    settings: Setting[];
+    setSettings: (settings: Setting[]) => void;
+  }
   | undefined
 >(undefined);
 
 const AggregatorProvider = ({ children }: AggregatorProviderProps) => {
   const [settings, setSettings] = useLocalStorage("aggregators", [
-    "daysPlayed",
-    "players",
-    "locations",
-    "recordedPlays",
-    "playCount",
+    // "playCount",
+    // "recordedPlays",
+    // "daysPlayed",
+    // "players",
   ]);
 
   const value = {

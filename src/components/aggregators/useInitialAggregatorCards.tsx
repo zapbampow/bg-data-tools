@@ -12,6 +12,10 @@ export default function useInitialAggregatorCards() {
                 setSettings(['recordedPlays']);
             } else if (width < 768) {
                 setSettings(['recordedPlays', 'playCount']);
+            } else if (width < 1024) {
+                setSettings(['recordedPlays', 'playCount', 'daysPlayed']);
+            } else {
+                setSettings(['recordedPlays', 'playCount', 'daysPlayed', 'players']);
             }
         }
     }, [settings, setSettings]);

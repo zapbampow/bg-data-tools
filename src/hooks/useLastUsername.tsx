@@ -11,8 +11,9 @@ export default function useLastUsername() {
     const [hasAutoRedirected, setHasAutoRedirected] = useSessionStorage("hasAutoRedirected", false) as [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 
     if (usernameFromUrl && usernameFromUrl !== lastUsername) {
+        console.log({ usernameFromUrl, lastUsername })
         setLastUsername(usernameFromUrl);
-        setHasAutoRedirected(false);
+        setHasAutoRedirected(true);
     }
 
     return { lastUsername, setLastUsername, hasAutoRedirected, setHasAutoRedirected };
