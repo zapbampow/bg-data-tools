@@ -15,7 +15,6 @@ type Props = {
 
 export default function AggregatorRow({ userId }: Props) {
   const { settings, setSettings } = useAggregatorContext();
-  useInitialAggregatorCards();
 
   return (
     <CalendarScreenProvider>
