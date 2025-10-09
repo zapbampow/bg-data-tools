@@ -11,7 +11,7 @@ export default function UsernameForm() {
   return (
     <Form method="post" className="flex flex-col gap-4 md:flex-row">
       <input
-        className="px-4 py-2 rounded-md bg-slate-100 invalid:border-red-500"
+        className="px-4 py-2 rounded-md bg-slate-100 invalid:border-red-500 drop-shadow-lg"
         name="username"
         type="text"
         placeholder="BGG Username"
@@ -20,7 +20,7 @@ export default function UsernameForm() {
         title="Only letters and numbers are allowed"
       />
       <button
-        className="px-4 py-2 text-3xl font-semibold rounded-md bg-slate-100"
+        className="px-4 py-2 text-3xl font-semibold rounded-md bg-slate-100 drop-shadow-lg"
         type="submit"
       >
         <span className="text-gradient">Submit</span>

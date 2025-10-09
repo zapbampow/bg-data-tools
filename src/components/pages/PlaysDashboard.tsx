@@ -17,8 +17,8 @@ export default function PlaysDashboard() {
 
   useEffect(() => {
     if (loading) return;
-    addPageView(`plays`);
-  }, []);
+    void addPageView(`plays`);
+  }, [addPageView, loading]);
 
   if (!user) return null;
 
@@ -48,12 +48,12 @@ export default function PlaysDashboard() {
         showProgress={showProgress}
       />
       <Container>
-        <h1 className="mb-8 text-5xl font-semibold text-white">
+        <h1 className="mb-8 text-5xl font-semibold text-white drop-shadow-lg">
           Recorded plays for {titleUserText}
         </h1>
       </Container>
-      <Aggregators userId={user.userId} />
       <FilterBar />
+      <Aggregators userId={user.userId} />
       <RecordedPlays />
     </div>
   );

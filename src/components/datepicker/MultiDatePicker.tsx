@@ -79,12 +79,11 @@ export default function MultiDatePickerComponent({ filter }: Props) {
   return (
     <div
       onClick={() => setIsOpen(true)}
-      className={`relative flex flex-col sm:flex-row sm:items-center sm:gap-4 text-slate-700 ${baseStyles} hover:cursor-pointer`}
+      className={`relative flex flex-col sm:flex-row sm:items-center sm:gap-4 text-slate-700 ${baseStyles} bg-white bg-opacity-[0.2] border-white text-white hover:cursor-pointer`}
     >
       <div className="font-semibold">{filter.label}:</div>
       <div className="flex items-center gap-4">
         <DateRangePicker
-          // @ts-ignore
           value={value}
           onChange={handleChange}
           calendarIcon={null}
@@ -99,6 +98,7 @@ export default function MultiDatePickerComponent({ filter }: Props) {
           isOpen={isOpen}
           onCalendarClose={() => setIsOpen(false)}
           rangeDivider="and"
+          className="text-slate-700"
         />
         <div onClick={removeFilter} className="ml-auto hover:text-red-500">
           <Trash width={16} />

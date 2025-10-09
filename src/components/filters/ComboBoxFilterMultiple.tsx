@@ -79,15 +79,15 @@ export default function ComboBoxFilterMultiple({ filter }: Props) {
     debouncedQuery === ""
       ? options
       : options?.filter((option: SelectionType) => {
-          let matchesQuery = option.label
-            .toLowerCase()
-            .includes(query.toLowerCase());
-          let isSelected = selections.find(
-            (selection) => selection.value === option.value
-          );
+        let matchesQuery = option.label
+          .toLowerCase()
+          .includes(query.toLowerCase());
+        let isSelected = selections.find(
+          (selection) => selection.value === option.value
+        );
 
-          return matchesQuery || isSelected;
-        });
+        return matchesQuery || isSelected;
+      });
 
   const handleChange = (selections: SelectionType[]) => {
     // console.log("handleChange", selections);
@@ -159,7 +159,7 @@ export default function ComboBoxFilterMultiple({ filter }: Props) {
   };
 
   return (
-    <div className={`relative ${comboContainerStyles} hover:cursor-pointer`}>
+    <div className={`relative ${comboContainerStyles}hover:cursor-pointer`}>
       {!isMobile && (
         <Measurer
           value={buttonText}
@@ -177,7 +177,7 @@ export default function ComboBoxFilterMultiple({ filter }: Props) {
         {buttonText}
         {selectionText ? (
           <button
-            className="text-slate-400 hover:text-red-500"
+            className="text-white hover:text-red-500"
             onClick={() => removeFilter(filter)}
           >
             <Trash width={16} />
@@ -220,9 +220,8 @@ export default function ComboBoxFilterMultiple({ filter }: Props) {
                     >
                       {({ active, selected }) => (
                         <li
-                          className={`flex items-center gap-1 ${baseSelectItem} ${itemHoverStyles} ${
-                            selected ? "font-semibold" : ""
-                          } ${active ? comboActiveItem : ""}
+                          className={`flex items-center gap-1 ${baseSelectItem} ${itemHoverStyles} ${selected ? "font-semibold" : ""
+                            } ${active ? comboActiveItem : ""}
                         `}
                         >
                           {selected ? (
@@ -243,9 +242,8 @@ export default function ComboBoxFilterMultiple({ filter }: Props) {
                   ))}
                 </Combobox.Options>
                 <div
-                  className={`flex justify-between gap-4 p-2 ${
-                    !open ? "hidden" : ""
-                  }`}
+                  className={`flex justify-between gap-4 p-2 ${!open ? "hidden" : ""
+                    }`}
                 >
                   <ClearFilter filter={filter} onClick={handleClear} />
                   <RemoveFilter filter={filter} />

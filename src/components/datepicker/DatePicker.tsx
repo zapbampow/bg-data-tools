@@ -57,7 +57,7 @@ export default function DatePickerComponent({ filter }: Props) {
 
   return (
     <div
-      className={`relative flex items-center gap-4 text-slate-700 ${baseStyles} hover:cursor-pointer`}
+      className={`relative flex items-center gap-4 text-white ${baseStyles} bg-white bg-opacity-[0.2]  border-white hover:cursor-pointer`}
       onClick={() => {
         setIsOpen(true);
       }}
@@ -79,6 +79,7 @@ export default function DatePickerComponent({ filter }: Props) {
           isOpen={isOpen}
           clearIcon={<Times width={16} />}
           clearAriaLabel="Clear date"
+          className="text-slate-700"
         />
       </div>
       <div onClick={removeFilter} className="ml-auto hover:text-red-500">

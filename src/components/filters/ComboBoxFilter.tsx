@@ -55,8 +55,8 @@ export default function ComboBoxFilter({ filter }: Props) {
     debouncedQuery === ""
       ? options
       : options?.filter((option: SelectionType) => {
-          return option.label.toLowerCase().includes(query.toLowerCase());
-        });
+        return option.label.toLowerCase().includes(query.toLowerCase());
+      });
 
   let { width } = useWindowSize();
 
@@ -174,7 +174,7 @@ export default function ComboBoxFilter({ filter }: Props) {
         </span>
         {selectionText ? (
           <button
-            className="text-slate-400 hover:text-red-500"
+            className="text-white hover:text-red-500"
             onClick={() => removeFilter(filter)}
           >
             <Trash width={16} />
@@ -224,9 +224,8 @@ export default function ComboBoxFilter({ filter }: Props) {
                         {({ active, selected }) => {
                           return (
                             <li
-                              className={`flex items-center gap-1  ${baseSelectItem} ${itemHoverStyles} ${
-                                selected ? "font-bold" : ""
-                              } ${active ? comboActiveItem : ""}`}
+                              className={`flex items-center gap-1  ${baseSelectItem} ${itemHoverStyles} ${selected ? "font-bold" : ""
+                                } ${active ? comboActiveItem : ""}`}
                             >
                               {selected ? (
                                 <div className="w-4">
@@ -248,9 +247,8 @@ export default function ComboBoxFilter({ filter }: Props) {
                   })}
                 </Combobox.Options>
                 <div
-                  className={`flex justify-between gap-4 p-2 ${
-                    !open ? "hidden" : ""
-                  }`}
+                  className={`flex justify-between gap-4 p-2 ${!open ? "hidden" : ""
+                    }`}
                 >
                   <ClearFilter filter={filter} onClick={handleClear} />
                   <RemoveFilter filter={filter} />

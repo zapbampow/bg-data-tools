@@ -58,11 +58,13 @@
 }
 
 .react-date-picker__inputGroup__divider {
+  color: white;
   padding: 1px 0;
   white-space: pre;
 }
 
 .react-date-picker__inputGroup__input {
+  color: white;
   min-width: 0.54em;
   height: 100%;
   /* position: relative; */
@@ -72,6 +74,10 @@
   font: inherit;
   box-sizing: content-box;
   -moz-appearance: textfield;
+}
+
+.react-date-picker__inputGroup__leadingZero {
+  color: white;
 }
 
 .react-date-picker__inputGroup__input::-webkit-outer-spin-button,
@@ -87,6 +93,15 @@
 .react-date-picker__inputGroup__input--hasLeadingZero {
   margin-left: -0.54em;
   padding-left: calc(1px + 0.54em);
+}
+
+.react-date-picker__clear-button {
+  color: white;
+}
+
+.react-date-picker__clear-button:hover {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
 .react-date-picker__button {
@@ -173,7 +188,7 @@
   height: 100%;
   flex-grow: 1;
   padding: 0 2px;
-  color: hsl(215, 25%, 27%);
+  color: white;
   box-sizing: content-box;
   font-weight: 600;
 }
@@ -211,6 +226,7 @@
 }
 
 .react-daterange-picker__range-divider {
+  color: white;
   font-style: italic;
 }
 

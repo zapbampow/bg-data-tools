@@ -10,6 +10,8 @@ import {
   baseSelectItem,
 } from "./styles";
 import type { SelectionType } from "./types";
+import AdjustmentsSpark from "./icons/AdjustmentsSpark";
+import AdjustmentsPlus from "./icons/AdjustmentsPlus";
 
 /**
  * Look at the aggregator in context
@@ -76,53 +78,48 @@ export default function AddFilterButton({ addFilterButton, display }: Props) {
   return (
     <div className={`${display ? "" : "hidden"}`}>
       <Listbox value={selectedValue} onChange={handleChange}>
-        {({ open }) => (
-          <>
-            <Listbox.Button
-              className={`${baseStyles} font-semibold  ${
-                open ? openButtonStyles : "border-transparent"
-              }  `}
-            >
-              Add Filter +
-            </Listbox.Button>
-            <Listbox.Options
-              className={`mt-1 max-w-max shadow-lg hover:shadow-slate-500/10 ${baseStyles} ${openMenuStyles}`}
-            >
-              {options.map((option, i) => {
-                if (option.value === "heading") {
-                  return (
-                    <div
-                      key={`option.label-${i}`}
-                      className={`uppercase text-slate-500 text-xs font-semibold ${
-                        i !== 0 ? "mt-2" : ""
+        <>
+          <Listbox.Button
+            className={`flex items-center gap-2 ${baseStyles} font-semibold  border-transparent`}
+          >
+            <span>Filters</span>
+            <AdjustmentsPlus width={18} />
+          </Listbox.Button>
+          <Listbox.Options
+            className={`mt-1 max-w-max shadow-lg hover:shadow-slate-500/10 ${baseStyles} ${openMenuStyles}`}
+          >
+            {options.map((option, i) => {
+              if (option.value === "heading") {
+                return (
+                  <div
+                    key={`option.label-${i}`}
+                    className={`uppercase text-slate-500 text-xs font-semibold ${i !== 0 ? "mt-2" : ""
                       }`}
-                    >
-                      {option.label}
-                    </div>
-                  );
-                } else {
-                  return (
-                    <Listbox.Option
-                      key={option.value}
-                      value={option}
-                      as={Fragment}
-                    >
-                      {({ active, selected }) => (
-                        <li
-                          className={`${baseSelectItem} ${
-                            active ? comboActiveItem : ""
+                  >
+                    {option.label}
+                  </div>
+                );
+              } else {
+                return (
+                  <Listbox.Option
+                    key={option.value}
+                    value={option}
+                    as={Fragment}
+                  >
+                    {({ active, selected }) => (
+                      <li
+                        className={`${baseSelectItem} ${active ? comboActiveItem : ""
                           }`}
-                        >
-                          {option.label}
-                        </li>
-                      )}
-                    </Listbox.Option>
-                  );
-                }
-              })}
-            </Listbox.Options>
-          </>
-        )}
+                      >
+                        {option.label}
+                      </li>
+                    )}
+                  </Listbox.Option>
+                );
+              }
+            })}
+          </Listbox.Options>
+        </>
       </Listbox>
     </div>
   );

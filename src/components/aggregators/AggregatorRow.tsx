@@ -7,7 +7,6 @@ import AggregatorMenu from "./AggregatorMenu/AggregatorMenu";
 import PlayCountCard from "./PlayCountCard";
 import { CalendarScreenProvider } from "./CalendarScreenContext";
 import { useAggregatorContext } from "./AggregatorContext.tsx";
-import useInitialAggregatorCards from "./useInitialAggregatorCards.tsx";
 
 type Props = {
   userId: number;
@@ -18,14 +17,17 @@ export default function AggregatorRow({ userId }: Props) {
 
   return (
     <CalendarScreenProvider>
-      <Container className="relative mb-8">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {getAggregators(settings, userId)}
-          <div className="absolute left-2 -bottom-7">
-            <AggregatorMenu settings={settings} setSettings={setSettings} />
+      <div className="grid gap-2">
+        <Container>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {getAggregators(settings, userId)}
           </div>
-        </div>
-      </Container>
+        </Container>
+
+        <Container className="mb-8">
+          <AggregatorMenu settings={settings} setSettings={setSettings} />
+        </Container>
+      </div>
     </CalendarScreenProvider>
   );
 }

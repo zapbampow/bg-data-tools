@@ -23,13 +23,13 @@ export default function FilterBar() {
   };
 
   return (
-    <Container>
+    <Container className="grid gap-2">
+      <AddFilterButton addFilterButton={addFilterButton} display={true} />
       <div className="flex flex-col flex-wrap gap-2 mb-8 filters sm:flex-row">
         {/* Filter components */}
         {state.slice(1).map((filter: FilterType) => {
           return <FilterToComponent key={filter.order} filter={filter} />;
         })}
-        <AddFilterButton addFilterButton={addFilterButton} display={true} />
       </div>
     </Container>
   );

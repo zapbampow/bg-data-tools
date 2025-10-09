@@ -1,6 +1,8 @@
 import { Menu, Switch } from "@headlessui/react";
 import { Dots } from "../../icons";
 import type { Setting } from "../AggregatorContext.tsx";
+import LayoutGrid from "~/components/icons/LayoutGrid.tsx";
+import { baseStyles, openButtonStyles } from "~/components/styles.ts";
 
 type Props = {
   settings: Setting[];
@@ -19,25 +21,27 @@ export default function AggregatorMenu({ settings, setSettings }: Props) {
   ];
 
   const handleChange = (option: Setting, value: boolean) => {
-    let optionInSettings = settings.some((setting) => setting === option);
+    const optionInSettings = settings.some((setting) => setting === option);
 
     if (optionInSettings) {
-      let newSettings = settings.filter((setting) => setting !== option);
+      const newSettings = settings.filter((setting) => setting !== option);
       setSettings(newSettings);
     } else {
-      let newSettings = [...settings, option];
+      const newSettings = [...settings, option];
       setSettings(newSettings);
     }
   };
 
   return (
     <Menu as="div" className="relative">
+
       <Menu.Button
-        className={`text-white opacity-50  hover:opacity-100 transition-all`}
+        className={`${baseStyles} flex items-center gap-2  font-semibold border-transparent`}
       >
-        <Dots width={24} />
-        <span className="sr-only">Chart Options</span>
+        <span>Widgets</span>
+        <LayoutGrid width={18} />
       </Menu.Button>
+
 
       <Menu.Items
         className={`absolute left-0 flex flex-col gap-4 p-4 rounded-md border-[1px] border-slate-400 bg-slate-100 shadow-md shadow-slate-500/40  z-10  w-max`}
@@ -56,15 +60,13 @@ export default function AggregatorMenu({ settings, setSettings }: Props) {
                 onChange={(newVal: boolean) =>
                   handleChange(option.value, newVal)
                 }
-                className={`${
-                  enabled ? "bg-blue-600" : "bg-gray-200"
-                } relative inline-flex h-6 w-11 items-center rounded-full`}
+                className={`${enabled ? "bg-blue-600" : "bg-gray-200"
+                  } relative inline-flex h-6 w-11 items-center rounded-full`}
               >
                 <span className="sr-only">Enable {option.label}</span>
                 <span
-                  className={`${
-                    enabled ? "translate-x-6" : "translate-x-1"
-                  } inline-block h-4 w-4 transform rounded-full bg-white transition`}
+                  className={`${enabled ? "translate-x-6" : "translate-x-1"
+                    } inline-block h-4 w-4 transform rounded-full bg-white transition`}
                 />
               </Switch>
               {option.label}
