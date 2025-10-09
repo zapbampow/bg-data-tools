@@ -5,7 +5,7 @@
   "homepage": "https:/zapbampow.github.io/bg-data-tools",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 5416",
     "build": "vite build",
     "build-prod": "./.build/buildprod.sh",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
