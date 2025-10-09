@@ -19,23 +19,20 @@ const AggregatorContext = React.createContext<
 >(undefined);
 
 const AggregatorProvider = ({ children }: AggregatorProviderProps) => {
-  const [settings, setSettings] = useLocalStorage<Setting[]>("aggregators", []) as [Setting[], (settings: Setting[]) => void];
-
-  const width = window.innerWidth;
-
-  React.useEffect(() => {
-    if (settings.length === 0) {
-      if (width < 640) {
-        setSettings(['recordedPlays']);
-      } else if (width < 768) {
-        setSettings(['recordedPlays', 'playCount']);
-      } else if (width < 1024) {
-        setSettings(['recordedPlays', 'playCount', 'daysPlayed']);
-      } else {
-        setSettings(['recordedPlays', 'playCount', 'daysPlayed', 'players']);
-      }
+  const getDefaultSettings = (): Setting[] => {
+    const width = window.innerWidth;
+    if (width < 640) {
+      return ['recordedPlays'];
+    } else if (width < 768) {
+      return ['recordedPlays', 'playCount'];
+    } else if (width < 1024) {
+      return ['recordedPlays', 'playCount', 'daysPlayed'];
+    } else {
+      return ['recordedPlays', 'playCount', 'daysPlayed', 'players'];
     }
-  }, []);
+  };
+
+  const [settings, setSettings] = useLocalStorage<Setting[]>("aggregators", getDefaultSettings());
 
   const value = {
     settings,
